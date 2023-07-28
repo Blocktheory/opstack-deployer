@@ -37,42 +37,6 @@ while getopts ":n:i:a:A:s:S:b:B:p:P:" opt; do
   esac
 done
 
-# Update package lists
-sudo apt update
-
-# Install build essentials
-sudo apt install -y build-essential
-
-# Install required packages
-sudo apt install -y git curl make jq
-
-# Download and install Go
-wget https://go.dev/dl/go1.20.linux-amd64.tar.gz
-tar xvzf go1.20.linux-amd64.tar.gz
-sudo cp go/bin/go /usr/bin/go
-sudo mv go /usr/lib
-export GOROOT=/usr/lib/go
-echo 'export GOROOT=/usr/lib/go' >> ~/.bashrc
-source ~/.bashrc
-
-echo 'Go installation completed'
-
-# Install Node.js
-curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
-sudo apt-get install -y nodejs
-
-# Install PNPM and Yarn
-sudo npm install -g pnpm
-sudo npm install -g yarn
-
-# Install Rust
-curl https://sh.rustup.rs -sSf | sh -s -- -y
-source ~/.bashrc
-
-# Install Foundry
-curl -L https://foundry.paradigm.xyz | bash
-exec ~/.bashrc
-
 # Clone and install Optimism
 cd ~
 cd /var
@@ -93,9 +57,6 @@ make geth
 # Set ETH_RPC_URL environment variable
 cd ../optimism/
 export ETH_RPC_URL="$eth_rpc_url"
-
-# Install direnv
-sudo apt install direnv
 
 
 output=$(cast block finalized --rpc-url $ETH_RPC_URL | grep -E "(timestamp|hash|number)")
