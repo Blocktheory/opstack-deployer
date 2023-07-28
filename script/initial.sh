@@ -16,8 +16,8 @@ sudo apt install -y git curl make jq
 echo 'Installing Go...'
 wget https://go.dev/dl/go1.20.linux-amd64.tar.gz
 tar xvzf go1.20.linux-amd64.tar.gz
-sudo cp go/bin/go /usr/bin/go
-sudo mv go /usr/lib
+sudo cp -n go/bin/go /usr/bin/go
+sudo mv -d go /usr/lib
 export GOROOT=/usr/lib/go
 echo 'export GOROOT=/usr/lib/go' >> ~/.bashrc
 source ~/.bashrc
