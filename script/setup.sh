@@ -140,7 +140,7 @@ file_name_format=$(create_file_name_format "$chain_name")
 echo "$json_data" > "$output_location/$file_name_format.json"
 
 cd packages/contracts-bedrock/
-cp .envrc.example .envrc
+cp -n .envrc.example .envrc
 
 
 # Function to load .envrc files in a directory and its subdirectories
@@ -183,9 +183,9 @@ go run cmd/main.go genesis l2 \
 # Set Up op-geth
 
 openssl rand -hex 32 > jwt.txt
-cp genesis.json ../../op-geth/
-cp jwt.txt ../../op-geth/
-cp ../packages/contracts-bedrock/.envrc ../../op-geth/
+cp -n genesis.json ../../op-geth/
+cp -n jwt.txt ../../op-geth/
+cp -n ../packages/contracts-bedrock/.envrc ../../op-geth/
 
 # Initialize op-geth
 
@@ -201,7 +201,7 @@ nohup ./build/bin/geth --datadir ./datadir --http --http.corsdomain="*" --http.v
 
 
 # Setting up op-node env
-cp .envrc ../optimism/op-node/
+cp -n .envrc ../optimism/op-node/
 cd ../optimism/op-node
 
 load_envrc_file "$(pwd)"
@@ -218,7 +218,7 @@ nohup ./bin/op-node 	--l2=http://localhost:8551 	--l2.jwt-secret=./jwt.txt 	--se
 
 
 # setting up op-batcher
-cp .envrc ../op-batcher
+cp -n .envrc ../op-batcher
 cd ../op-batcher
 direnv allow .
 
@@ -229,7 +229,7 @@ nohup ./bin/op-batcher     --l2-eth-rpc=http://localhost:8545     --rollup-rpc=h
 
 # Setting up op-proposer
 
-cp .envrc ../op-proposer
+cp -n .envrc ../op-proposer
 cd ../op-proposer
 
 json_file="/var/optimism/packages/contracts-bedrock/deployments/$file_name_format/L2OutputOracleProxy.json"
@@ -248,5 +248,4 @@ direnv allow .
 
 
 # Run op-proposer
-
 nohup ./bin/op-proposer     --poll-interval=12s     --rpc.port=8560     --rollup-rpc=http://localhost:8547     --l2oo-address=$L2OO_ADDR     --private-key=$PROPOSER_KEY     --l1-eth-rpc=$L1_RPC &

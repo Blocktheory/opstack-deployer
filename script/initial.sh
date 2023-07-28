@@ -12,6 +12,7 @@ sudo apt install -y build-essential
 # Install required packages
 sudo apt install -y git curl make jq
 
+
 if command -v go >/dev/null 2>&1; then
     echo 'go installed alreay'
 else 
@@ -19,12 +20,13 @@ else
     echo 'Installing Go...'
     wget https://go.dev/dl/go1.20.linux-amd64.tar.gz
     tar xvzf go1.20.linux-amd64.tar.gz
-    sudo cp go/bin/go /usr/bin/go
-    sudo mv go /usr/lib
+    sudo cp -n go/bin/go /usr/bin/go
+    sudo mv -d go /usr/lib
     export GOROOT=/usr/lib/go
     echo 'export GOROOT=/usr/lib/go' >> ~/.bashrc
     source ~/.bashrc
 fi
+
 
 # Install Node.js
 echo 'Installing node and supported packages...'
