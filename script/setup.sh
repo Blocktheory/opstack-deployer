@@ -5,7 +5,7 @@ set -eo pipefail
 
 chain_name="blocktheory"
 output_location="/var/optimism/packages/contracts-bedrock/deploy-config/"
-eth_rpc_url="https://eth-goerli.g.alchemy.com/v2/4twDaZ1szgaV3gpcG1scbEPMVTp8hTqh"
+eth_rpc_url=""
 admin_public_address=""
 admin_private_key=""
 sequencer_public_address=""
@@ -160,7 +160,7 @@ load_envrc_file "$(pwd)"
 export ETH_RPC_URL=$eth_rpc_url
 export DEPLOYMENT_CONTEXT=$file_name_format
 export PRIVATE_KEY=$admin_private_key
-export L1_RPC=https://eth-goerli.g.alchemy.com/v2/4twDaZ1szgaV3gpcG1scbEPMVTp8hTqh
+export L1_RPC=$eth_rpc_url
 export RPC_KIND=alchemy
 
 source ~/.bashrc
@@ -214,7 +214,7 @@ direnv allow .
 
 # Run op-node
 
-nohup ./bin/op-node 	--l2=http://localhost:8551 	--l2.jwt-secret=./jwt.txt 	--sequencer.enabled 	--sequencer.l1-confs=3 	--verifier.l1-confs=3 	--rollup.config=./rollup.json 	--rpc.addr=0.0.0.0 	--rpc.port=8547 	--p2p.disable 	--rpc.enable-admin 	--p2p.sequencer.key=$SEQ_KEY 	--l1=https://eth-goerli.g.alchemy.com/v2/4twDaZ1szgaV3gpcG1scbEPMVTp8hTqh 	--l1.rpckind=$RPC_KIND &
+nohup ./bin/op-node 	--l2=http://localhost:8551 	--l2.jwt-secret=./jwt.txt 	--sequencer.enabled 	--sequencer.l1-confs=3 	--verifier.l1-confs=3 	--rollup.config=./rollup.json 	--rpc.addr=0.0.0.0 	--rpc.port=8547 	--p2p.disable 	--rpc.enable-admin 	--p2p.sequencer.key=$SEQ_KEY 	--l1=$eth_rpc_url 	--l1.rpckind=$RPC_KIND &
 
 
 # setting up op-batcher
