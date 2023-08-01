@@ -143,19 +143,26 @@ cd packages/contracts-bedrock/
 cp -n .envrc.example .envrc
 
 
-# Function to load .envrc files in a directory and its subdirectories
-load_envrc_file() {
-    local dir="$1"
-    local envrc_file="$dir/.envrc"
+# Function to load .envrc files in a directory 
+update_env_variable() {
+    local variable_name="$1"
+    local new_value="$2"
 
-    if [ -f "$envrc_file" ]; then
-        echo "Loading environment variables from: $envrc_file"
-        source "$envrc_file"
+    # Check if the variable exists in the .envrc file
+    if grep -q "^export $variable_name=" .envrc; then
+        # Variable exists, update its value using sed
+        awk -v var="$variable_name" -v val="$new_value" 'BEGIN {FS=OFS="="} $1 == "export " var {$2 = val} 1' .envrc > .envrc.tmp && mv .envrc.tmp .envrc
+    else
+        # Variable does not exist, add it to the .envrc file
+        echo "export $variable_name=$new_value" >> .envrc
     fi
-
 }
 
-load_envrc_file "$(pwd)"
+update_env_variable "ETH_RPC_URL" "$eth_rpc_url"
+update_env_variable "DEPLOYMENT_CONTEXT" "$file_name_format"
+update_env_variable "PRIVATE_KEY" "$admin_private_key"
+update_env_variable "L1_RPC" "$eth_rpc_url"
+update_env_variable "RPC_KIND" "alchemy"
 
 export ETH_RPC_URL=$eth_rpc_url
 export DEPLOYMENT_CONTEXT=$file_name_format
@@ -164,6 +171,7 @@ export L1_RPC=$eth_rpc_url
 export RPC_KIND=alchemy
 
 source ~/.bashrc
+direnv allow .
 
 mkdir deployments/$file_name_format
 forge script scripts/Deploy.s.sol:Deploy --private-key $PRIVATE_KEY --broadcast --rpc-url $ETH_RPC_URL
@@ -204,7 +212,8 @@ nohup ./build/bin/geth --datadir ./datadir --http --http.corsdomain="*" --http.v
 cp -n .envrc ../optimism/op-node/
 cd ../optimism/op-node
 
-load_envrc_file "$(pwd)"
+update_env_variable "SEQ_KEY" "$sequencer_private_key"
+update_env_variable "BATCHER_KEY" "$batcher_private_key"
 
 export SEQ_KEY=$sequencer_private_key
 export BATCHER_KEY=$batcher_private_key
@@ -236,7 +245,8 @@ json_file="/var/optimism/packages/contracts-bedrock/deployments/$file_name_forma
 param_name="address"
 l2oo_addr=$(jq -r ".$param_name" "$json_file")
 
-load_envrc_file "$(pwd)"
+update_env_variable "PROPOSER_KEY" "$proposer_private_key"
+update_env_variable "L2OO_ADDR" "$l2oo_addr"
 
 # sets Propose private key
 export PROPOSER_KEY=$proposer_private_key
