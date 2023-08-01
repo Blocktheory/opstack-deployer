@@ -1,6 +1,7 @@
 <script>
 	import welcome from "$lib/images/svelte-welcome.webp";
 	import welcome_fallback from "$lib/images/svelte-welcome.png";
+	import { Stepper, Step } from "@skeletonlabs/skeleton";
 
 	// @ts-ignore
 	function createFile(event) {
@@ -35,200 +36,209 @@
 <section>
 	<h1 class="text-2xl">Optimisim Op Stack</h1>
 	<div class="flex gap-5 w-full">
-		<div class="bg-red p-10 w-full md:w-1/2">
+		<div class="bg-red p-10 w-full">
 			<h2 class="font-bold text-xl mb-4 text-center">Configure Rollup</h2>
-			<form on:submit|preventDefault={createFile}>
-				<div class="mb-4">
-					<label
-						class="block text-gray-700 text-sm font-bold mb-2"
-						for="chainId"
-					>
-						Chain Id
-					</label>
-					<input
-						class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-						id="chainId"
-						name="CHAINID"
-						type="text"
-						placeholder="e.g., 8691"
-					/>
-				</div>
-				<div class="mb-4">
-					<label
-						class="block text-gray-700 text-sm font-bold mb-2"
-						for="chainName"
-					>
-						Chain Name
-					</label>
-					<input
-						class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-						id="chainName"
-						name="chainName"
-						type="text"
-						placeholder="e.g., Blocktheory"
-					/>
-				</div>
-				<div class="mb-4">
-					<label
-						class="block text-gray-700 text-sm font-bold mb-2"
-						for="rpc_url"
-					>
-						Layer 1 RPC Url
-					</label>
-					<input
-						class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-						id="rpc_url"
-						name="RPC_URL"
-						type="text"
-						placeholder="e.g., https://rpc.ankr.com/eth_goerli"
-					/>
-				</div>
 
-				<div>
-					<p>
-						Please set the owner address to one which you are
-						comfortable exposing private keys for (on your local
-						device).
-					</p>
-				</div>
-				<div class=" border-4 border-spacing-1 p-5 mb-3">
-					<!-- owner -->
-					<div class="mb-4">
+			<Stepper>
+				<Step>
+					<svelte:fragment slot="header"
+						>Initial Setup</svelte:fragment
+					>
+					<div class="mb-4 w-full">
 						<label
 							class="block text-gray-700 text-sm font-bold mb-2"
-							for="ownerpa"
+							for="chainId"
 						>
-							Owner Public Address
+							Chain Id
 						</label>
 						<input
 							class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-							id="ownerpa"
-							name="ownerpa"
+							id="chainId"
+							name="CHAINID"
 							type="text"
-							placeholder="e.g., 0x06e70f295B6337c213DDe82D13cc198027687A7B"
+							placeholder="e.g., 8691"
 						/>
 					</div>
 					<div class="mb-4">
 						<label
 							class="block text-gray-700 text-sm font-bold mb-2"
-							for="ownerpvtkey"
+							for="chainName"
 						>
-							Owner Private Key
+							Chain Name
 						</label>
 						<input
 							class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-							id="ownerpvtkey"
-							name="ownerpvtkey"
+							id="chainName"
+							name="chainName"
 							type="text"
-							placeholder="e.g, 0x06e70f295B6337c213DDe82D13cc198027687A7B"
-						/>
-					</div>
-				</div>
-				<div class=" border-4 border-spacing-1 p-5 mb-3">
-					<!-- Sequencer -->
-					<div class="mb-4">
-						<label
-							class="block text-gray-700 text-sm font-bold mb-2"
-							for="sequencerpa"
-						>
-							Sequencer Public Address
-						</label>
-						<input
-							class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-							id="sequencerpa"
-							name="sequencerpa"
-							type="text"
-							placeholder="Ex: 150, 170"
+							placeholder="e.g., Blocktheory"
 						/>
 					</div>
 					<div class="mb-4">
 						<label
 							class="block text-gray-700 text-sm font-bold mb-2"
-							for="sequencerpvtkey"
-						>
-							Sequencer Private Key
-						</label>
-						<input
-							class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-							id="sequencerpvtkey"
-							name="sequencerpvtkey"
-							type="text"
-							placeholder="Ex: 150, 170"
-						/>
-					</div>
-				</div>
-				<div class=" border-4 border-spacing-1 p-5 mb-3">
-					<div class="mb-4">
-						<label
-							class="block text-gray-700 text-sm font-bold mb-2"
-							for="batcherpa"
-						>
-							Batcher Public Address
-						</label>
-						<input
-							class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-							id="batcherpa"
-							name="batcherpa"
-							type="text"
-							placeholder="Ex: 150, 170"
-						/>
-					</div>
-					<div class="mb-4">
-						<label
-							class="block text-gray-700 text-sm font-bold mb-2"
-							for="batcherpvtkey"
-						>
-							Batcher Private Key
-						</label>
-						<input
-							class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-							id="batcherpvtkey"
-							name="batcherpvtkey"
-							type="text"
-							placeholder="Ex: 150, 170"
-						/>
-					</div>
-				</div>
-				<div class=" border-4 border-spacing-1 p-5 mb-3">
-					<!-- Proposer block -->
-					<div class="mb-4">
-						<label
-							class="block text-gray-700 text-sm font-bold mb-2"
-							for="proposerpa"
-						>
-							Proposer Public Address
-						</label>
-						<input
-							class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-							id="proposerpa"
-							name="proposerpa"
-							type="text"
-							placeholder="Ex: 150, 170"
-						/>
-					</div>
-					<div class="mb-4">
-						<label
-							class="block text-gray-700 text-sm font-bold mb-2"
-							for="proposerpvtkey"
-						>
-							Proposer Private Key
-						</label>
-						<input
-							class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-							id="proposerpvtkey"
-							name="proposerpvtkey"
-							type="text"
-							placeholder="Ex: 150, 170"
-						/>
-						<label
-							class="block text-gray-700 text-sm font-semi-bold mb-2 mx-3"
 							for="rpc_url"
 						>
-							Can leave empty and add later
+							Layer 1 RPC Url
 						</label>
+						<input
+							class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+							id="rpc_url"
+							name="RPC_URL"
+							type="text"
+							placeholder="e.g., https://rpc.ankr.com/eth_goerli"
+						/>
 					</div>
-				</div>
+				</Step>
+				<Step>
+					<svelte:fragment slot="header"
+						>Configure (Optional)</svelte:fragment
+					>
+					<div class=" border-4 border-spacing-1 p-5 mb-3">
+						<!-- owner -->
+						<div class="mb-4">
+							<label
+								class="block text-gray-700 text-sm font-bold mb-2"
+								for="ownerpa"
+							>
+								Owner Public Address
+							</label>
+							<input
+								class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+								id="ownerpa"
+								name="ownerpa"
+								type="text"
+								placeholder="e.g., 0x06e70f295B6337c213DDe82D13cc198027687A7B"
+							/>
+						</div>
+						<div class="mb-4">
+							<label
+								class="block text-gray-700 text-sm font-bold mb-2"
+								for="ownerpvtkey"
+							>
+								Owner Private Key
+							</label>
+							<input
+								class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+								id="ownerpvtkey"
+								name="ownerpvtkey"
+								type="text"
+								placeholder="e.g, 0x06e70f295B6337c213DDe82D13cc198027687A7B"
+							/>
+						</div>
+					</div>
+					<div class=" border-4 border-spacing-1 p-5 mb-3">
+						<!-- Sequencer -->
+						<div class="mb-4">
+							<label
+								class="block text-gray-700 text-sm font-bold mb-2"
+								for="sequencerpa"
+							>
+								Sequencer Public Address
+							</label>
+							<input
+								class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+								id="sequencerpa"
+								name="sequencerpa"
+								type="text"
+								placeholder="Ex: 150, 170"
+							/>
+						</div>
+						<div class="mb-4">
+							<label
+								class="block text-gray-700 text-sm font-bold mb-2"
+								for="sequencerpvtkey"
+							>
+								Sequencer Private Key
+							</label>
+							<input
+								class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+								id="sequencerpvtkey"
+								name="sequencerpvtkey"
+								type="text"
+								placeholder="Ex: 150, 170"
+							/>
+						</div>
+					</div>
+					<div class=" border-4 border-spacing-1 p-5 mb-3">
+						<div class="mb-4">
+							<label
+								class="block text-gray-700 text-sm font-bold mb-2"
+								for="batcherpa"
+							>
+								Batcher Public Address
+							</label>
+							<input
+								class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+								id="batcherpa"
+								name="batcherpa"
+								type="text"
+								placeholder="Ex: 150, 170"
+							/>
+						</div>
+						<div class="mb-4">
+							<label
+								class="block text-gray-700 text-sm font-bold mb-2"
+								for="batcherpvtkey"
+							>
+								Batcher Private Key
+							</label>
+							<input
+								class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+								id="batcherpvtkey"
+								name="batcherpvtkey"
+								type="text"
+								placeholder="Ex: 150, 170"
+							/>
+						</div>
+					</div>
+					<div class=" border-4 border-spacing-1 p-5 mb-3">
+						<!-- Proposer block -->
+						<div class="mb-4">
+							<label
+								class="block text-gray-700 text-sm font-bold mb-2"
+								for="proposerpa"
+							>
+								Proposer Public Address
+							</label>
+							<input
+								class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+								id="proposerpa"
+								name="proposerpa"
+								type="text"
+								placeholder="Ex: 150, 170"
+							/>
+						</div>
+						<div class="mb-4">
+							<label
+								class="block text-gray-700 text-sm font-bold mb-2"
+								for="proposerpvtkey"
+							>
+								Proposer Private Key
+							</label>
+							<input
+								class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+								id="proposerpvtkey"
+								name="proposerpvtkey"
+								type="text"
+								placeholder="Ex: 150, 170"
+							/>
+							<label
+								class="block text-gray-700 text-sm font-semi-bold mb-2 mx-3"
+								for="rpc_url"
+							>
+								Can leave empty and add later
+							</label>
+						</div>
+					</div>
+				</Step>
+				<Step>
+					<svelte:fragment slot="header">Download</svelte:fragment>
+					<div>Download File</div>
+				</Step>
+			</Stepper>
 
+			<!-- <form on:submit|preventDefault={createFile}>
 				<div>
 					<button
 						class="bg-blue-500 hover:bg-blue-700 w-full text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
@@ -237,10 +247,7 @@
 						Create
 					</button>
 				</div>
-			</form>
-		</div>
-		<div class="bg-blue p-10 w-full md:w-1/2">
-			<h2 class="font-bold text-xl">Summary</h2>
+			</form> -->
 		</div>
 	</div>
 </section>

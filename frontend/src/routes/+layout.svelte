@@ -1,43 +1,55 @@
 <script>
-	import Header from './Header.svelte';
-	import './styles.css';
+  import "../app.postcss";
+  import Header from "./Header.svelte";
+  import "./styles.css";
+
+  // Your selected Skeleton theme:
+  import "@skeletonlabs/skeleton/themes/theme-skeleton.css";
+
+  // This contains the bulk of Skeletons required styles:
+  import "@skeletonlabs/skeleton/styles/skeleton.css";
+
+  // Finally, your application's global stylesheet (sometimes labeled 'app.css')
+  import "../app.postcss";
 </script>
 
 <div class="app">
-	<Header />
+  <Header />
 
-	<main>
-		<slot />
-	</main>
+  <main>
+    <slot />
+  </main>
 
-	<footer>
-		<p class="text-black font-bold"><a href="https://blocktheory.com">Blockthoery</a></p>
-	</footer>
+  <footer>
+    <p class="text-black font-bold">
+      <a href="https://blocktheory.com">Blockthoery</a>
+    </p>
+  </footer>
 </div>
 
 <style>
-	.app {
-		display: flex;
-		flex-direction: column;
-		min-height: 100vh;
-	}
+  .app {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
 
-	main {
-		flex: 1;
-		display: flex;
-		flex-direction: column;
-		padding: 1rem;
-		width: 100%;
-		max-width: 64rem;
-		margin: 0 auto;
-		box-sizing: border-box;
-	}
+  main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    width: 100%;
+    max-width: 64rem;
+    margin: 0 auto;
+    box-sizing: border-box;
+  }
 
-	footer {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		padding: 12px;
-	}
+  footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 12px;
+  }
 </style>
