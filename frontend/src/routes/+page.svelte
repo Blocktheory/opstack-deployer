@@ -2,6 +2,7 @@
 	import welcome from "$lib/images/svelte-welcome.webp";
 	import welcome_fallback from "$lib/images/svelte-welcome.png";
 	import { Stepper, Step } from "@skeletonlabs/skeleton";
+	import { clipboard } from "@skeletonlabs/skeleton";
 
 	// @ts-ignore
 	function createFile(event) {
@@ -37,6 +38,24 @@
 	<h1 class="text-2xl">Optimisim Op Stack</h1>
 	<div class="flex gap-5 w-full">
 		<div class="bg-red p-10 w-full">
+			<div
+				class="card p-4 font-semibold text-sm bg-[#FFEED3] text-[#60461F] mb-7"
+			>
+				All parameters shown are defaults (including some randomly
+				generated addresses), which we recommend using for testing
+				purposes.
+				<br />
+				<br />
+				More information around parameter customization and guidance can
+				be found in the
+				<a
+					href="https://stack.optimism.io/docs/build/getting-started/#prerequisites"
+					target="_blank"
+					class="underline">documentation</a
+				>.
+				<br />
+				Please ensure you have at least 1.5 Goerli ETH before getting started.
+			</div>
 			<h2 class="font-bold text-xl mb-4 text-center">Configure Rollup</h2>
 
 			<Stepper>
@@ -94,7 +113,7 @@
 					<svelte:fragment slot="header"
 						>Configure (Optional)</svelte:fragment
 					>
-					<div class=" border-4 border-spacing-1 p-5 mb-3">
+					<div class=" card p-5 mb-3">
 						<!-- owner -->
 						<div class="mb-4">
 							<label
@@ -108,7 +127,7 @@
 								id="ownerpa"
 								name="ownerpa"
 								type="text"
-								placeholder="e.g., 0x06e70f295B6337c213DDe82D13cc198027687A7B"
+								placeholder="e.g, 0x06...7A7B"
 							/>
 						</div>
 						<div class="mb-4">
@@ -123,11 +142,11 @@
 								id="ownerpvtkey"
 								name="ownerpvtkey"
 								type="text"
-								placeholder="e.g, 0x06e70f295B6337c213DDe82D13cc198027687A7B"
+								placeholder="e.g, 0x06...7A7B"
 							/>
 						</div>
 					</div>
-					<div class=" border-4 border-spacing-1 p-5 mb-3">
+					<div class=" card p-5 mb-3">
 						<!-- Sequencer -->
 						<div class="mb-4">
 							<label
@@ -141,7 +160,7 @@
 								id="sequencerpa"
 								name="sequencerpa"
 								type="text"
-								placeholder="Ex: 150, 170"
+								placeholder="e.g, 0x06...7A7B"
 							/>
 						</div>
 						<div class="mb-4">
@@ -156,11 +175,11 @@
 								id="sequencerpvtkey"
 								name="sequencerpvtkey"
 								type="text"
-								placeholder="Ex: 150, 170"
+								placeholder="e.g, 0x06...7A7B"
 							/>
 						</div>
 					</div>
-					<div class=" border-4 border-spacing-1 p-5 mb-3">
+					<div class=" card p-5 mb-3">
 						<div class="mb-4">
 							<label
 								class="block text-gray-700 text-sm font-bold mb-2"
@@ -173,7 +192,7 @@
 								id="batcherpa"
 								name="batcherpa"
 								type="text"
-								placeholder="Ex: 150, 170"
+								placeholder="e.g, 0x06...7A7B"
 							/>
 						</div>
 						<div class="mb-4">
@@ -188,11 +207,11 @@
 								id="batcherpvtkey"
 								name="batcherpvtkey"
 								type="text"
-								placeholder="Ex: 150, 170"
+								placeholder="e.g, 0x06...7A7B"
 							/>
 						</div>
 					</div>
-					<div class=" border-4 border-spacing-1 p-5 mb-3">
+					<div class=" card p-5 mb-3">
 						<!-- Proposer block -->
 						<div class="mb-4">
 							<label
@@ -206,7 +225,7 @@
 								id="proposerpa"
 								name="proposerpa"
 								type="text"
-								placeholder="Ex: 150, 170"
+								placeholder="e.g, 0x06...7A7B"
 							/>
 						</div>
 						<div class="mb-4">
@@ -221,7 +240,7 @@
 								id="proposerpvtkey"
 								name="proposerpvtkey"
 								type="text"
-								placeholder="Ex: 150, 170"
+								placeholder="e.g, 0x06...7A7B"
 							/>
 							<label
 								class="block text-gray-700 text-sm font-semi-bold mb-2 mx-3"
@@ -233,8 +252,26 @@
 					</div>
 				</Step>
 				<Step>
-					<svelte:fragment slot="header">Download</svelte:fragment>
+					<svelte:fragment slot="header">Finishing up</svelte:fragment
+					>
+					<p>Below are the scripts</p>
+					<button class="btn variant-filled p-4 bg-slate-400 mb-3">
+						Download Scripts
+					</button>
+
 					<div>Download File</div>
+
+					<!-- Source -->
+					<p class="card" data-clipboard="exampleElement">
+						CHAIN_ID= CHAIN_NAME= RPC_URL= ADMIN_ADDRESS=
+					</p>
+
+					<!-- Trigger -->
+					<button
+						class="btn variant-filled"
+						use:clipboard={{ element: "exampleElement" }}
+						>Copy</button
+					>
 				</Step>
 			</Stepper>
 

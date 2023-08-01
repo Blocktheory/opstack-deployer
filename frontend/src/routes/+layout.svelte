@@ -22,7 +22,7 @@
 
   <footer>
     <p class="text-black font-bold">
-      <a href="https://blocktheory.com">Blockthoery</a>
+      <a href="https://blocktheory.com">Developed by Blockthoery</a>
     </p>
   </footer>
 </div>
