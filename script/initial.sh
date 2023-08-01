@@ -35,7 +35,6 @@ sudo apt-get install -y nodejs
 
 # Install PNPM and Yarn
 sudo npm install -g pnpm
-sudo npm install -g yarn
 
 # Install Rust
 echo 'Installing Rust...'
