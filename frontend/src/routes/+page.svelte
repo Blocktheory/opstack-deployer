@@ -33,7 +33,7 @@
 </svelte:head>
 
 <section>
-	<h1 class="text-2xl">Create your own Blockchain using OP Stack</h1>
+	<h1 class="text-2xl">Optimisim Op Stack</h1>
 	<div class="flex gap-5 w-full">
 		<div class="bg-red p-10 w-full md:w-1/2">
 			<h2 class="font-bold text-xl mb-4 text-center">Configure Rollup</h2>
@@ -43,14 +43,14 @@
 						class="block text-gray-700 text-sm font-bold mb-2"
 						for="chainId"
 					>
-						Chain ID
+						Chain Id
 					</label>
 					<input
 						class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
 						id="chainId"
 						name="CHAINID"
 						type="text"
-						placeholder="Chain Id"
+						placeholder="e.g., 8691"
 					/>
 				</div>
 				<div class="mb-4">
@@ -65,7 +65,7 @@
 						id="chainName"
 						name="chainName"
 						type="text"
-						placeholder="Ex: My OP-Stack Chain"
+						placeholder="e.g., Blocktheory"
 					/>
 				</div>
 				<div class="mb-4">
@@ -73,14 +73,14 @@
 						class="block text-gray-700 text-sm font-bold mb-2"
 						for="rpc_url"
 					>
-						RPC Url
+						Layer 1 RPC Url
 					</label>
 					<input
 						class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
 						id="rpc_url"
 						name="RPC_URL"
 						type="text"
-						placeholder="Ex: 150, 170"
+						placeholder="e.g., https://rpc.ankr.com/eth_goerli"
 					/>
 				</div>
 
@@ -105,7 +105,7 @@
 							id="ownerpa"
 							name="ownerpa"
 							type="text"
-							placeholder="Ex: 150, 170"
+							placeholder="e.g., 0x06e70f295B6337c213DDe82D13cc198027687A7B"
 						/>
 					</div>
 					<div class="mb-4">
@@ -120,7 +120,7 @@
 							id="ownerpvtkey"
 							name="ownerpvtkey"
 							type="text"
-							placeholder="Ex: 150, 170"
+							placeholder="e.g, 0x06e70f295B6337c213DDe82D13cc198027687A7B"
 						/>
 					</div>
 				</div>
