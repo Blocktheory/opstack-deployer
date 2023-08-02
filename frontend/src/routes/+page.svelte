@@ -4,29 +4,21 @@
 	import { Stepper, Step } from "@skeletonlabs/skeleton";
 	import { clipboard } from "@skeletonlabs/skeleton";
 
+	let env_variables = {
+		CHAIN_NAME: "",
+		CHAIN_ID: "",
+		ETH_RPC_URL: "",
+		ADMIN_PUBLIC_ADDRESS: "",
+		ADMIN_PRIVATE_KEY: "",
+		SEQUENCER_PUBLIC_ADDRESS: "",
+		SEQUENCER_PRIVATE_KEY: "",
+		BATCHER_PUBLIC_ADDRESS: "",
+		BATCHER_PRIVATE_KEY: "",
+		PROPOSER_PUBLIC_ADDRESS: "",
+		PROPOSER_PRIVATE_KEY: "",
+	};
+
 	// @ts-ignore
-	function createFile(event) {
-		const formEl = event.target;
-		const data = new FormData(formEl);
-		console.log({ data });
-		let content = "# env variables for the scripts\n";
-		for (let field of data) {
-			const [key, value] = field;
-			content += `${key}:${value}\n`;
-		}
-
-		const blob = new Blob([content], { type: "text/plain" });
-
-		const anchor = document.createElement("a");
-		anchor.href = URL.createObjectURL(blob);
-		anchor.download = ".env";
-		anchor.click();
-
-		// Cleanup the URL object after download
-		setTimeout(() => {
-			URL.revokeObjectURL(anchor.href);
-		}, 0);
-	}
 </script>
 
 <svelte:head>
@@ -74,6 +66,7 @@
 							class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
 							id="chainId"
 							name="CHAINID"
+							bind:value={env_variables.CHAIN_ID}
 							type="text"
 							placeholder="e.g., 8691"
 						/>
@@ -91,6 +84,7 @@
 							name="chainName"
 							type="text"
 							placeholder="e.g., Blocktheory"
+							bind:value={env_variables.CHAIN_NAME}
 						/>
 					</div>
 					<div class="mb-4">
@@ -106,6 +100,7 @@
 							name="RPC_URL"
 							type="text"
 							placeholder="e.g., https://rpc.ankr.com/eth_goerli"
+							bind:value={env_variables.ETH_RPC_URL}
 						/>
 					</div>
 				</Step>
@@ -118,31 +113,33 @@
 						<div class="mb-4">
 							<label
 								class="block text-gray-700 text-sm font-bold mb-2"
-								for="ownerpa"
+								for="adminpa"
 							>
-								Owner Public Address
+								Admin Public Address
 							</label>
 							<input
 								class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-								id="ownerpa"
-								name="ownerpa"
+								id="adminpa"
+								name="adminpa"
 								type="text"
 								placeholder="e.g, 0x06...7A7B"
+								bind:value={env_variables.ADMIN_PUBLIC_ADDRESS}
 							/>
 						</div>
 						<div class="mb-4">
 							<label
 								class="block text-gray-700 text-sm font-bold mb-2"
-								for="ownerpvtkey"
+								for="adminpvtkey"
 							>
-								Owner Private Key
+								Admin Private Key
 							</label>
 							<input
 								class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-								id="ownerpvtkey"
-								name="ownerpvtkey"
+								id="adminpvtkey"
+								name="adminpvtkey"
 								type="text"
 								placeholder="e.g, 0x06...7A7B"
+								bind:value={env_variables.ADMIN_PRIVATE_KEY}
 							/>
 						</div>
 					</div>
@@ -161,6 +158,7 @@
 								name="sequencerpa"
 								type="text"
 								placeholder="e.g, 0x06...7A7B"
+								bind:value={env_variables.SEQUENCER_PUBLIC_ADDRESS}
 							/>
 						</div>
 						<div class="mb-4">
@@ -176,6 +174,7 @@
 								name="sequencerpvtkey"
 								type="text"
 								placeholder="e.g, 0x06...7A7B"
+								bind:value={env_variables.SEQUENCER_PRIVATE_KEY}
 							/>
 						</div>
 					</div>
@@ -193,6 +192,7 @@
 								name="batcherpa"
 								type="text"
 								placeholder="e.g, 0x06...7A7B"
+								bind:value={env_variables.BATCHER_PUBLIC_ADDRESS}
 							/>
 						</div>
 						<div class="mb-4">
@@ -208,6 +208,7 @@
 								name="batcherpvtkey"
 								type="text"
 								placeholder="e.g, 0x06...7A7B"
+								bind:value={env_variables.BATCHER_PRIVATE_KEY}
 							/>
 						</div>
 					</div>
@@ -226,6 +227,7 @@
 								name="proposerpa"
 								type="text"
 								placeholder="e.g, 0x06...7A7B"
+								bind:value={env_variables.PROPOSER_PUBLIC_ADDRESS}
 							/>
 						</div>
 						<div class="mb-4">
@@ -241,6 +243,7 @@
 								name="proposerpvtkey"
 								type="text"
 								placeholder="e.g, 0x06...7A7B"
+								bind:value={env_variables.PROPOSER_PRIVATE_KEY}
 							/>
 							<label
 								class="block text-gray-700 text-sm font-semi-bold mb-2 mx-3"
@@ -262,8 +265,28 @@
 					<div>Download File</div>
 
 					<!-- Source -->
-					<p class="card" data-clipboard="exampleElement">
-						CHAIN_ID= CHAIN_NAME= RPC_URL= ADMIN_ADDRESS=
+					<p class="card p-10" data-clipboard="exampleElement">
+						CHAIN_NAME={env_variables.CHAIN_NAME}
+						<br />
+						CHAIN_ID={env_variables.CHAIN_ID}
+						<br />
+						ETH_RPC_URL={env_variables.CHAIN_ID}
+						<br />
+						ADMIN_PUBLIC_ADDRESS={env_variables.ADMIN_PUBLIC_ADDRESS}
+						<br />
+						ADMIN_PRIVATE_KEY={env_variables.ADMIN_PRIVATE_KEY}
+						<br />
+						SEQUENCER_PUBLIC_ADDRESS={env_variables.SEQUENCER_PUBLIC_ADDRESS}
+						<br />
+						SEQUENCER_PRIVATE_KEY={env_variables.SEQUENCER_PRIVATE_KEY}
+						<br />
+						BATCHER_PUBLIC_ADDRESS={env_variables.BATCHER_PUBLIC_ADDRESS}
+						<br />
+						BATCHER_PRIVATE_KEY={env_variables.BATCHER_PRIVATE_KEY}
+						<br />
+						PROPOSER_PUBLIC_ADDRESS={env_variables.PROPOSER_PUBLIC_ADDRESS}
+						<br />
+						PROPOSER_PRIVATE_KEY={env_variables.PROPOSER_PRIVATE_KEY}
 					</p>
 
 					<!-- Trigger -->
