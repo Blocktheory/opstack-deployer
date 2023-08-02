@@ -21,7 +21,7 @@ else
     wget https://go.dev/dl/go1.20.linux-amd64.tar.gz
     tar xvzf go1.20.linux-amd64.tar.gz
     sudo cp -n go/bin/go /usr/bin/go
-    sudo mv -d go /usr/lib
+    sudo mv -n go /usr/lib
     export GOROOT=/usr/lib/go
     echo 'export GOROOT=/usr/lib/go' >> ~/.bashrc
     source ~/.bashrc
