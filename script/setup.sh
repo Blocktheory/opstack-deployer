@@ -44,6 +44,7 @@ check_parameter "BATCHER_PUBLIC_ADDRESS" "$BATCHER_PUBLIC_ADDRESS"
 check_parameter "BATCHER_PRIVATE_KEY" "$BATCHER_PUBLIC_ADDRESS"
 check_parameter "PROPOSER_PUBLIC_ADDRESS" "$PROPOSER_PUBLIC_ADDRESS"
 check_parameter "PROPOSER_PRIVATE_KEY" "$PROPOSER_PRIVATE_KEY"
+check_parameter "RPC_KIND" "$RPC_KIND"
 
 echo "Cloning Optimism repository"
 # Clone and install Optimism
@@ -172,13 +173,13 @@ update_env_variable "ETH_RPC_URL" "$ETH_RPC_URL"
 update_env_variable "DEPLOYMENT_CONTEXT" "$file_name_format"
 update_env_variable "PRIVATE_KEY" "$ADMIN_PRIVATE_KEY"
 update_env_variable "L1_RPC" "$ETH_RPC_URL"
-update_env_variable "RPC_KIND" "alchemy"
+update_env_variable "RPC_KIND" "$RPC_KIND"
 
 export ETH_RPC_URL=$ETH_RPC_URL
 export DEPLOYMENT_CONTEXT=$file_name_format
 export PRIVATE_KEY=$ADMIN_PRIVATE_KEY
 export L1_RPC=$ETH_RPC_URL
-export RPC_KIND=alchemy
+export RPC_KIND=$RPC_KIND
 
 source ~/.bashrc
 direnv allow .
