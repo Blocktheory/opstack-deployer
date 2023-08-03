@@ -174,7 +174,7 @@
 							/>
 						</div>
 						<p class="text-sm font-bold text-gray-700">
-							Recommended ETH for Admin is <b>2ETH</b>
+							Recommended ETH for Admin is <b>2 ETH</b>
 						</p>
 					</div>
 					<div class=" card p-5 mb-3">
