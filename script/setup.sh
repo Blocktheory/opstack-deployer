@@ -1,5 +1,16 @@
 #!/bin/bash
 
+draw_blocktheory() {
+    cat << "BLOCKTHEORY"
+    __________.__                 __      __  .__                               
+\______   \  |   ____   ____ |  | ___/  |_|  |__   ____  ___________ ___.__.
+ |    |  _/  |  /  _ \_/ ___\|  |/ /\   __\  |  \_/ __ \/  _ \_  __ <   |  |
+ |    |   \  |_(  <_> )  \___|    <  |  | |   Y  \  ___(  <_> )  | \/\___  |
+ |______  /____/\____/ \___  >__|_ \ |__| |___|  /\___  >____/|__|   / ____|
+        \/                 \/     \/           \/     \/             \/     
+BLOCKTHEORY
+}
+
 # Enable "exit on error" and "pipefail" mode
 set -eo pipefail
 
@@ -34,10 +45,11 @@ check_parameter "BATCHER_PRIVATE_KEY" "$BATCHER_PUBLIC_ADDRESS"
 check_parameter "PROPOSER_PUBLIC_ADDRESS" "$PROPOSER_PUBLIC_ADDRESS"
 check_parameter "PROPOSER_PRIVATE_KEY" "$PROPOSER_PRIVATE_KEY"
 
+echo "Cloning Optimism repository"
 # Clone and install Optimism
 cd ~
 cd /var
-git clone https://github.com/blocktheory/optimism.git
+git clone https://github.com/ethereum-optimism/optimism.git
 cd optimism
 pnpm install
 make op-node op-batcher op-proposer
@@ -45,9 +57,10 @@ make op-node op-batcher op-proposer
 foundryup
 pnpm build
 
+echo "Cloning Op-geth repository"
 # Clone and install op-geth
 cd ..
-git clone https://github.com/blocktheory/op-geth.git
+git clone https://github.com/ethereum-optimism/op-geth.git
 cd op-geth
 make geth
 
@@ -55,7 +68,7 @@ make geth
 cd ../optimism/
 export ETH_RPC_URL="$ETH_RPC_URL"
 
-
+echo "Creating config for L2 chain($CHAIN_NAME)"
 output=$(cast block finalized --rpc-url $ETH_RPC_URL | grep -E "(timestamp|hash|number)")
 
 blockhash=$(echo "$output" | awk '/hash/ {print $2}')
@@ -170,12 +183,13 @@ export RPC_KIND=alchemy
 source ~/.bashrc
 direnv allow .
 
+echo "Deploying L1 contracts"
 mkdir deployments/$file_name_format
 forge script scripts/Deploy.s.sol:Deploy --private-key $PRIVATE_KEY --broadcast --rpc-url $ETH_RPC_URL
 forge script scripts/Deploy.s.sol:Deploy --sig 'sync()' --private-key $PRIVATE_KEY --broadcast --rpc-url $ETH_RPC_URL
 
 # Run op-node
-
+echo "Generating L2 config files"
 cd ../../op-node/
 
 go run cmd/main.go genesis l2 \
@@ -193,7 +207,7 @@ cp -n jwt.txt ../../op-geth/
 cp -n ../packages/contracts-bedrock/.envrc ../../op-geth/
 
 # Initialize op-geth
-
+echo "Initializing op-geth"
 cd ../../op-geth/
 mkdir datadir
 build/bin/geth init --datadir=datadir genesis.json
@@ -201,6 +215,7 @@ direnv allow .
 
 
 # Run op-geth
+echo "Running the node software"
 
 nohup ./build/bin/geth --datadir ./datadir --http --http.corsdomain="*" --http.vhosts="*" --http.addr=0.0.0.0 --http.api=web3,debug,eth,txpool,net,engine --ws --ws.addr=0.0.0.0 --ws.port=8546 --ws.origins="*" --ws.api=debug,eth,txpool,net,engine --syncmode=full --gcmode=archive --nodiscover --maxpeers=0 --networkid=$CHAIN_ID --authrpc.vhosts="*" --authrpc.addr=0.0.0.0 --authrpc.port=8551 --authrpc.jwtsecret=./jwt.txt --rollup.disabletxpoolgossip=true &
 
@@ -229,7 +244,7 @@ cd ../op-batcher
 direnv allow .
 
 # Run op-batcher
-
+echo "Running Batcher"
 nohup ./bin/op-batcher     --l2-eth-rpc=http://localhost:8545     --rollup-rpc=http://localhost:8547     --poll-interval=1s     --sub-safety-margin=6     --num-confirmations=1     --safe-abort-nonce-too-low-count=3     --resubmission-timeout=30s     --rpc.addr=0.0.0.0     --rpc.port=8548     --rpc.enable-admin     --max-channel-duration=1     --l1-eth-rpc=$L1_RPC     --private-key=$BATCHER_KEY &
 
 
@@ -255,4 +270,11 @@ direnv allow .
 
 
 # Run op-proposer
+echo "Running Proposer"
+
 nohup ./bin/op-proposer     --poll-interval=12s     --rpc.port=8560     --rollup-rpc=http://localhost:8547     --l2oo-address=$L2OO_ADDR     --private-key=$PROPOSER_KEY     --l1-eth-rpc=$L1_RPC &
+
+draw_blocktheory
+
+echo "Your OPStack chain created successfully"
+echo "RPC is running in the PORT 8545"
