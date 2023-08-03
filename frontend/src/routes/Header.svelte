@@ -15,7 +15,7 @@
 
 	<div>
 		<a href="https://github.com/Blocktheory/opstack-setup-script">
-			<img src={github} width="40" alt="GitHub" />
+			<p class="pt-4 text-black">Github</p>
 		</a>
 	</div>
 </header>

@@ -327,10 +327,10 @@
 					<p class="text-lg text-gray-700 font-semibold">Step 1</p>
 					<p class="text-md">Hardware Requirments</p>
 					<div class="card p-4">
-						Linux ubuntu 20.04 LTS
-						<br /> Min. 8GB RAM & 4 Core CPU
+						OS: Linux Ubuntu 20.04 LTS
+						<br />RAM: Min. 8GB & 4 CPUs
 						<br />
-						Storage 250GB or more
+						Storage: 250GB or more
 					</div>
 					<p class="text-lg text-gray-700 font-semibold">
 						You can use any cloud services like Digital Ocean, AWS,

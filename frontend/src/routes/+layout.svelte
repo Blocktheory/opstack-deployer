@@ -33,7 +33,7 @@
 
   <footer class="flex flex-row-reverse p-5 opacity-40">
     <p class="text-black">
-      <a href="https://blocktheory.com">Developed by Blockthoery</a>
+      <a href="https://blocktheory.com">Developed by <strong>Blocktheory</strong></a>
     </p>
   </footer>
 </div>
