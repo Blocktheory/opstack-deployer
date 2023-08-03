@@ -53,20 +53,16 @@
 			<div
 				class="card p-4 font-semibold text-sm bg-[#FFEED3] text-[#60461F] mb-7"
 			>
-				All parameters shown are defaults (including some randomly
-				generated addresses), which we recommend using for testing
-				purposes.
-				<br />
-				<br />
-				More information around parameter customization and guidance can
-				be found in the
+				Launch OP Stack Chain
+				<br /><br />
+				Use below interface and kick off your chain on OPStack. This interface is currently intended to help launching L2 chain based on OP stack. 
+				Find more details 
 				<a
-					href="https://stack.optimism.io/docs/build/getting-started/#prerequisites"
+					href="https://github.com/Blocktheory/opstack-setup-script"
 					target="_blank"
-					class="underline">documentation</a
+					class="underline">here</a
 				>.
 				<br />
-				Please ensure you have at least 1.5 Goerli ETH before getting started.
 			</div>
 			<h2 class="font-bold text-xl mb-4 text-center">Configure Rollup</h2>
 
@@ -136,7 +132,7 @@
 				</Step>
 				<Step>
 					<svelte:fragment slot="header"
-						>Configure (Optional)</svelte:fragment
+						>Setup Wallets (Optional)</svelte:fragment
 					>
 					<div class=" card p-5 mb-3">
 						<!-- owner -->
@@ -173,7 +169,7 @@
 								bind:value={env_variables.ADMIN_PRIVATE_KEY}
 							/>
 						</div>
-						<p class="text-sm font-bold text-gray-700">
+						<p class="text-sm text-gray-700">
 							Recommended ETH for Admin is <b>2 ETH</b>
 						</p>
 					</div>
@@ -245,8 +241,8 @@
 								bind:value={env_variables.BATCHER_PRIVATE_KEY}
 							/>
 						</div>
-						<p class="text-sm font-bold text-gray-700">
-							Recommended ETH for Batcher is <b>10ETH</b>
+						<p class="text-sm text-gray-700">
+							Recommended ETH for Batcher is <b>10 ETH</b>
 						</p>
 					</div>
 					<div class=" card p-5 mb-3">
@@ -283,8 +279,8 @@
 								bind:value={env_variables.PROPOSER_PRIVATE_KEY}
 							/>
 						</div>
-						<p class="text-sm font-bold text-gray-700">
-							Recommended ETH for Proposer is <b>5ETH</b>
+						<p class="text-sm text-gray-700">
+							Recommended ETH for Proposer is <b>5 ETH</b>
 						</p>
 					</div>
 				</Step>

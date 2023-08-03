@@ -21,7 +21,7 @@
   </main>
 
   <footer class="flex flex-row-reverse p-5 opacity-40">
-    <p class="text-black font-bold">
+    <p class="text-black">
       <a href="https://blocktheory.com">Developed by Blockthoery</a>
     </p>
   </footer>
