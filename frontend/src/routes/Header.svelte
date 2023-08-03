@@ -1,24 +1,24 @@
 <script>
-	import { page } from "$app/stores";
-	import logo from "$lib/images/blocktheory.svg";
 	import github from "$lib/images/github.svg";
+	import logo from "$lib/images/opstack.png";
 </script>
 
-<header>
+<header class="flex justify-around">
 	<div>
-		<h1 class="text-2xl text-left">Optimisim Op Stack</h1>
+		<img src={logo} alt="OpStack" />
+		<p class="text-sm">Launch L2 Chain</p>
 	</div>
 
-	<div class="corner">
+	<div>
+		<!-- <h1 class="text-2xl text-left">Op Stack</h1> -->
+	</div>
+
+	<div>
 		<a href="https://github.com/Blocktheory/opstack-setup-script">
-			<img src={github} alt="GitHub" />
+			<img src={github} width="40" alt="GitHub" />
 		</a>
 	</div>
 </header>
 
 <style>
-	header {
-		display: flex;
-		justify-content: space-around;
-	}
 </style>
