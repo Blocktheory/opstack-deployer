@@ -3,7 +3,7 @@
 # Enable "exit on error" and "pipefail" mode
 set -eo pipefail
 
-output_location="/var/optimism/packages/contracts-bedrock/deploy-config/"
+output_location="/var/optimism/packages/contracts-bedrock/deploy-config"
 
 # Function to check if a required parameter is missing
 function check_parameter {
