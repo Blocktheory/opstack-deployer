@@ -1,81 +1,79 @@
-# EVM Rollup from the OP Stack, L2 Chain Setup Script
+![logo (6) 1](https://github.com/Blocktheory/opstack-setup-script/assets/13044958/418b5780-2bf5-46af-99a2-66f049aedc25)
+# Launch OP Stack L2 Chain
+This repository contains deployment scripts to quick setup & launch the L2 Optimism chain based on opstack.
 
-This repository contains scripts to quick setup the L2 Optimism chain based on op stack.
+## Steps to Launch Chain
+You can visit [opstack.codecrane.com]([url](https://opstack.codecrane.com/))
+or Follow the steps below
 
-## initial.sh
+#### Hardware Requirements
+```
+Linux ubuntu 20.04 LTS
+Min. 8GB RAM & 4 Core CPU
+Storage 250GB or more
+```
+You can use any cloud services like [Digital Ocean]([url](https://cloud.digitalocean.com/)), [AWS]([url](https://aws.amazon.com/)), [Google Cloud]([url](https://cloud.google.com/)), etc.,
 
-This script performs:
+## Step 1
+Clone the repository
+```
+git clone https://github.com/Blocktheory/opstack-setup-script
+// navigate to the deploy script folder
+cd opstack-setup-script/deploy-scripts
+```
 
+## Step 2
+Create your environment file with following keys, you can use command `nano .env` or `vim .env` to create it 
+```
+CHAIN_NAME="Chain Name"
+CHAIN_ID=
+ETH_RPC_URL="L1 RPC End Point"
+ADMIN_PUBLIC_ADDRESS="Admin public address"
+ADMIN_PRIVATE_KEY="Admin private key "
+SEQUENCER_PUBLIC_ADDRESS="Sequencer public address"
+SEQUENCER_PRIVATE_KEY="Sequencer private key "
+BATCHER_PUBLIC_ADDRESS="Batcher public address"
+BATCHER_PRIVATE_KEY="Batcher private key "
+PROPOSER_PUBLIC_ADDRESS="proposer public address"
+PROPOSER_PRIVATE_KEY="Properser private key "
+```
+#### Funding requirement in each accounts:
+- Admin — 2 ETH
+- Proposer — 5 ETH
+- Batcher — 10 ETH
+
+## Step 3
+Once you've created the environemnt file inside the deploy-scripts folder, You can run the initial scripts with command
+```
+bash ./initial.sh
+or
+./initial.sh
+```
+#### script initial.sh performs
 * Installs the necessary dependencies
 * Creates the necessary directories
 * Downloads the OP Stack Code
 
-## setup.sh
+## Step 4
+Once initial.sh script runs successfully, We can refresh the terminal using command 
+`source ~/.bashrc`
 
-This script performs:
+Then we can run the setup / final script with below command 
+```
+bash ./setup.sh
+or
+./setup.sh
+```
+#### script setup.sh performs
 * Initializes the OP Stack
 * Starts the OP Stack
 
-## Usage
-To use the scripts, simply run them from the command line:
+### Deployed Successfully
 
+Once the script runs successfully you can now see the new chain up and running in the port **8545**. You can access it by using the RPC end points as `host:8454` along with chain id used earlier while running the script.
 
-## Required 
-ETH_RPC_URL — URL for your L1 node.
-Accounts for 
-- Admin
-- Proposer
-- Batcher
-- Sequencer
-or you can create a new one with command `cast wallet new`
+The best way to submit feedback and report bugs is to [open a GitHub issue](https://github.com/Blocktheory/opstack-setup-script/issues)
 
-#### Recommended funding amounts are as follows:
-Admin — 2 ETH
-Proposer — 5 ETH
-Batcher — 10 ETH
+For more details refer: [Opstack Offical Docs]([url](https://stack.optimism.io/docs/build/getting-started))
 
-
-For more details please refer: (Op-Stack-Get-Started)[https://stack.optimism.io/docs/build/getting-started]
-## How to Run
-```
-Step 1
-bash ./initial.sh 
-
-Step 2
-bash ./setup.sh -n <chain_name> -i=530067 -a "<admin_address>" -A "<admin_privatekey>" -s "<sequencer_address>" -S "<sequencer_privatekey>" -b "<batcher_address>" -B "<batcher_privatekey>" -p "<proposer_address>" -P "<proposer_private>" -r "<rpc_url>"
-```
-
-
-# Explorer
-
-You can use Blockscout as an explorer for your chain. 
-
-```
-    git clone https://github.com/blockscout/blockscout/
-    cd blocksout/docker-compose/
-```
-
-You can modify the environment variables here
-
-```
-    vim blockscout/docker-compose/envs/common-blockscout.env
-```
-
-```
-    ETHEREUM_JSONRPC_VARIANT: 'geth'
-    ETHEREUM_JSONRPC_HTTP_URL: http://host.docker.internal:8545/
-    ETHEREUM_JSONRPC_TRACE_URL: http://host.docker.internal:8545/
-    INDEXER_DISABLE_PENDING_TRANSACTIONS_FETCHER: "true"
-    DATABASE_URL: postgresql://postgres:@host.docker.internal:7432/blockscout?ssl=false
-    ECTO_USE_SSL: "false"
-    NETWORK: ""
-    SUBNETWORK: "Blocktheory"
-    BLOCKSCOUT_VERSION: "Blocktheory 0.0.1"
-    PORT: 4000
-```
-
-Once the environment variables are set. You can run the docker-compose
-
-```
-    docker-compose up --build
-```
+--------------------------------------------------
