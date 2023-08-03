@@ -1,6 +1,4 @@
 <script>
-	import welcome from "$lib/images/svelte-welcome.webp";
-	import welcome_fallback from "$lib/images/svelte-welcome.png";
 	import { Stepper, Step } from "@skeletonlabs/skeleton";
 	import { clipboard } from "@skeletonlabs/skeleton";
 	import Info from "$lib/images/info.svg";
