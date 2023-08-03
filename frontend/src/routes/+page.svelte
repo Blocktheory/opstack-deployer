@@ -3,6 +3,8 @@
 	import welcome_fallback from "$lib/images/svelte-welcome.png";
 	import { Stepper, Step } from "@skeletonlabs/skeleton";
 	import { clipboard } from "@skeletonlabs/skeleton";
+	import Info from "$lib/images/info.svg";
+	import Downloadfile from "$lib/components/Downloadfile.svelte";
 
 	let env_variables = {
 		CHAIN_NAME: "",
@@ -18,7 +20,26 @@
 		PROPOSER_PRIVATE_KEY: "",
 	};
 
-	// @ts-ignore
+	let donwloadScript = () => {
+		return `
+	CHAIN_NAME=${env_variables.CHAIN_NAME}
+	CHAIN_ID=${env_variables.CHAIN_ID}
+	ETH_RPC_URL=${env_variables.ETH_RPC_URL}
+	ADMIN_PUBLIC_ADDRESS=${env_variables.ADMIN_PUBLIC_ADDRESS}
+	ADMIN_PRIVATE_KEY=${env_variables.ADMIN_PRIVATE_KEY}
+	SEQUENCER_PUBLIC_ADDRESS=${env_variables.SEQUENCER_PUBLIC_ADDRESS}
+	SEQUENCER_PRIVATE_KEY=${env_variables.SEQUENCER_PRIVATE_KEY}
+	BATCHER_PUBLIC_ADDRESS=${env_variables.BATCHER_PUBLIC_ADDRESS}
+	BATCHER_PRIVATE_KEY=${env_variables.BATCHER_PRIVATE_KEY}
+	PROPOSER_PUBLIC_ADDRESS=${env_variables.PROPOSER_PUBLIC_ADDRESS}
+	PROPOSER_PRIVATE_KEY=${env_variables.PROPOSER_PRIVATE_KEY}`;
+	};
+
+	$: lockedStep1 = !(
+		env_variables.CHAIN_ID.trim() !== "" &&
+		env_variables.CHAIN_NAME.trim() !== "" &&
+		env_variables.ETH_RPC_URL.trim() !== ""
+	);
 </script>
 
 <svelte:head>
@@ -27,7 +48,6 @@
 </svelte:head>
 
 <section>
-	<h1 class="text-2xl">Optimisim Op Stack</h1>
 	<div class="flex gap-5 w-full">
 		<div class="bg-red p-10 w-full">
 			<div
@@ -50,18 +70,26 @@
 			</div>
 			<h2 class="font-bold text-xl mb-4 text-center">Configure Rollup</h2>
 
-			<Stepper>
-				<Step>
+			<Stepper }>
+				<Step locked={lockedStep1}>
 					<svelte:fragment slot="header"
 						>Initial Setup</svelte:fragment
 					>
 					<div class="mb-4 w-full">
-						<label
-							class="block text-gray-700 text-sm font-bold mb-2"
-							for="chainId"
-						>
-							Chain Id
-						</label>
+						<div class="flex">
+							<label
+								class="block text-gray-700 text-sm font-bold mb-2"
+								for="chainId"
+							>
+								Chain Id
+								<sup class="text-md text-red-600">*</sup>
+							</label>
+							<img
+								src={Info}
+								alt="info_icon"
+								class="cursor-pointer w-4 h-4 mx-2"
+							/>
+						</div>
 						<input
 							class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
 							id="chainId"
@@ -77,6 +105,7 @@
 							for="chainName"
 						>
 							Chain Name
+							<sup class="text-md text-red-600">*</sup>
 						</label>
 						<input
 							class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -93,6 +122,7 @@
 							for="rpc_url"
 						>
 							Layer 1 RPC Url
+							<sup class="text-md text-red-600">*</sup>
 						</label>
 						<input
 							class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -110,6 +140,7 @@
 					>
 					<div class=" card p-5 mb-3">
 						<!-- owner -->
+
 						<div class="mb-4">
 							<label
 								class="block text-gray-700 text-sm font-bold mb-2"
@@ -142,6 +173,9 @@
 								bind:value={env_variables.ADMIN_PRIVATE_KEY}
 							/>
 						</div>
+						<p class="text-sm font-bold text-gray-700">
+							Recommended ETH for Admin is <b>2ETH</b>
+						</p>
 					</div>
 					<div class=" card p-5 mb-3">
 						<!-- Sequencer -->
@@ -211,6 +245,9 @@
 								bind:value={env_variables.BATCHER_PRIVATE_KEY}
 							/>
 						</div>
+						<p class="text-sm font-bold text-gray-700">
+							Recommended ETH for Batcher is <b>10ETH</b>
+						</p>
 					</div>
 					<div class=" card p-5 mb-3">
 						<!-- Proposer block -->
@@ -245,32 +282,67 @@
 								placeholder="e.g, 0x06...7A7B"
 								bind:value={env_variables.PROPOSER_PRIVATE_KEY}
 							/>
-							<label
-								class="block text-gray-700 text-sm font-semi-bold mb-2 mx-3"
-								for="rpc_url"
-							>
-								Can leave empty and add later
-							</label>
 						</div>
+						<p class="text-sm font-bold text-gray-700">
+							Recommended ETH for Proposer is <b>5ETH</b>
+						</p>
 					</div>
 				</Step>
 				<Step>
 					<svelte:fragment slot="header">Finishing up</svelte:fragment
 					>
-					<p>Below are the scripts</p>
-					<button class="btn variant-filled p-4 bg-slate-400 mb-3">
-						Download Scripts
-					</button>
+					<p class="text-lg text-gray-700 font-bold">Instructions</p>
+					<p class="text-lg text-gray-700 font-semibold">
+						1. Download Initial Script below
+					</p>
+					<Downloadfile
+						fileName="inital.sh"
+						fileURL="https://ds-storage.sgp1.cdn.digitaloceanspaces.com/blocktheory/op-script/initial.sh"
+					/>
+					<!-- <a
+						href={"https://ds-storage.sgp1.cdn.digitaloceanspaces.com/blocktheory/op-script/initial.sh"}
+						class="btn variant-filled p-4 bg-slate-400 mb-3"
+						download="inital.sh"
+					>
+						Download Intial Script
+					</a> -->
+					<p class="text-lg text-gray-700 font-semibold">
+						2. Download Setup Script below and add the .env
+						variables in the same folder as this script
+					</p>
+					<!-- <a
+						href={"https://ds-storage.sgp1.cdn.digitaloceanspaces.com/blocktheory/op-script/setup.sh"}
+						class="btn variant-filled p-4 bg-slate-400 mb-3"
+						download="setup.sh"
+					>
+						Download Setup Script
+					</a> -->
 
-					<div>Download File</div>
+					<Downloadfile
+						fileName="setup.sh"
+						fileURL="https://ds-storage.sgp1.cdn.digitaloceanspaces.com/blocktheory/op-script/setup.sh"
+					/>
+
+					<p>
+						Create a file named ".env" and place it in the same
+						folder as the above script
+					</p>
 
 					<!-- Source -->
-					<p class="card p-10" data-clipboard="exampleElement">
+					<div class="card p-10" data-clipboard="exampleElement">
+						<div class="flex justify-end m-0">
+							<button
+								class="btn btn-sm text-sm m-0 variant-filled"
+								use:clipboard={donwloadScript()}
+							>
+								Copy
+							</button>
+						</div>
 						CHAIN_NAME={env_variables.CHAIN_NAME}
 						<br />
 						CHAIN_ID={env_variables.CHAIN_ID}
 						<br />
-						ETH_RPC_URL={env_variables.CHAIN_ID}
+						ETH_RPC_URL={env_variables.ETH_RPC_URL}
 						<br />
 						ADMIN_PUBLIC_ADDRESS={env_variables.ADMIN_PUBLIC_ADDRESS}
 						<br />
@@ -287,14 +359,15 @@
 						PROPOSER_PUBLIC_ADDRESS={env_variables.PROPOSER_PUBLIC_ADDRESS}
 						<br />
 						PROPOSER_PRIVATE_KEY={env_variables.PROPOSER_PRIVATE_KEY}
-					</p>
+					</div>
 
 					<!-- Trigger -->
 					<button
 						class="btn variant-filled"
-						use:clipboard={{ element: "exampleElement" }}
-						>Copy</button
+						use:clipboard={donwloadScript()}
 					>
+						Copy
+					</button>
 				</Step>
 			</Stepper>
 

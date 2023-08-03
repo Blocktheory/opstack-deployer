@@ -20,7 +20,7 @@
     <slot />
   </main>
 
-  <footer>
+  <footer class="flex flex-row-reverse p-5 opacity-40">
     <p class="text-black font-bold">
       <a href="https://blocktheory.com">Developed by Blockthoery</a>
     </p>
@@ -43,13 +43,5 @@
     max-width: 64rem;
     margin: 0 auto;
     box-sizing: border-box;
-  }
-
-  footer {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 12px;
   }
 </style>
