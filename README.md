@@ -68,7 +68,7 @@ or
 * Initializes the OP Stack
 * Starts the OP Stack
 
-### Deployed Successfully
+## L2 Chain Deployed Successfully
 
 Once the script runs successfully you can now see the new chain up and running in the port **8545**. You can access it by using the RPC end points as `host:8454` along with chain id used earlier while running the script.
 
@@ -76,4 +76,41 @@ The best way to submit feedback and report bugs is to [open a GitHub issue](http
 
 For more details refer: [Opstack Offical Docs]([url](https://stack.optimism.io/docs/build/getting-started))
 
---------------------------------------------------
+
+## Setup Blockscout Explorer _(Optional)_
+For setting up the explorer for the new l2 chain launched, Please follow setps below 
+
+Lets, clone the blockscout explorer 
+```
+git clone https://github.com/blockscout/blockscout/
+cd blocksout/docker-compose/
+```
+
+We can modify the environment variables here, 
+
+```
+vim blockscout/docker-compose/envs/common-blockscout.env
+or 
+nano blockscout/docker-compose/envs/common-blockscout.env
+```
+You can refer to the below values in the environment file
+```
+ETHEREUM_JSONRPC_VARIANT: 'geth'
+ETHEREUM_JSONRPC_HTTP_URL: http://host.docker.internal:8545/
+ETHEREUM_JSONRPC_TRACE_URL: http://host.docker.internal:8545/
+INDEXER_DISABLE_PENDING_TRANSACTIONS_FETCHER: "true"
+DATABASE_URL: postgresql://postgres:@host.docker.internal:7432/blockscout?ssl=false
+ECTO_USE_SSL: "false"
+NETWORK: ""
+SUBNETWORK: "Blocktheory"
+BLOCKSCOUT_VERSION: "Blocktheory"
+PORT: 4000
+```
+Once the environment variables are set. You can run the docker-compose
+
+```
+docker-compose up --build -d
+```
+
+Now, you can access the blocksout explorer in port **4000**. You can access it by using the end point as `host:4000`
+
