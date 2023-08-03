@@ -3,7 +3,7 @@
 This repository contains deployment scripts to quick setup & launch the L2 Optimism chain based on opstack.
 
 ## Steps to Launch Chain
-You can visit [opstack.codecrane.com]([url](https://opstack.codecrane.com/))
+You can visit [opstack.vercel.app](https://opstack.vercel.app)
 or Follow the steps below
 
 #### Hardware Requirements
