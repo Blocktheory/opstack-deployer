@@ -151,15 +151,18 @@
 								content="The kind of RPC URL you are using"
 							/>
 						</div>
-						<select class="select bg-white">
-							<option>Alchemy</option>
-							<option>Quicknode</option>
-							<option>Parity</option>
-							<option>Nethermind</option>
-							<option> Debug_geth</option>
-							<option> Erigon</option>
-							<option> Basic</option>
-							<option> Any </option>
+						<select
+							class="select bg-white"
+							bind:value={env_variables.ETH_RPC_KIND}
+						>
+							<option value="Alchemy">Alchemy</option>
+							<option value="Quicknode">Quicknode</option>
+							<option value="Parity">Parity</option>
+							<option value="Nethermind">Nethermind</option>
+							<option value="Debug_geth"> Debug_geth</option>
+							<option value="Erigon"> Erigon</option>
+							<option value="Basic"> Basic</option>
+							<option value="Any "> Any </option>
 						</select>
 					</div>
 				</Step>
