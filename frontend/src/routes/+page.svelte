@@ -45,8 +45,13 @@
 </script>
 
 <svelte:head>
-	<title>Home</title>
-	<meta name="description" content="OP Stack Launch Script" />
+	<title>OPStack | Deploy L2 Chain</title>
+	<meta name="title" content="OPStack | Deploy L2 Chain" />
+	<meta property="og:url" content="https://opstack.vercel.app/" />
+	<meta property="og:title" content="OPStack | Deploy L2 Chain" />
+	<meta property="og:description" content="This interface helps to kick off your chain on OPStack. This interface is currently intended to help launching L2 chain based on OP stack. You can use this chain to perform tests and prepare for the superchain, or you can modify it to adapt it to your own needs."  />
+	<meta property="og:image" content="https://mirror-media.imgix.net/publication-images/1C-0OTP4DRCWJY17XvOHO.png" />
+	<meta name="description" content="This interface helps to kick off your chain on OPStack. This interface is currently intended to help launching L2 chain based on OP stack. You can use this chain to perform tests and prepare for the superchain, or you can modify it to adapt it to your own needs." />
 </svelte:head>
 
 <section>
@@ -58,8 +63,7 @@
 				Launch OP Stack Chain
 				<br /><br />
 				Use below interface and kick off your chain on OPStack. This interface
-				is currently intended to help launching L2 chain based on OP stack. You can use this chain to perform tests and prepare for the superchain, or you can modify it to adapt it to your own needs
-				Find more details
+				is currently intended to help launching L2 chain based on OP stack. You can use this chain to perform tests and prepare for the superchain, or you can modify it to adapt it to your own needs. Find more details
 				<a
 					href="https://github.com/Blocktheory/opstack-setup-script"
 					target="_blank"
