@@ -5,8 +5,8 @@ Our repository contains deployment scripts that facilitate the seamless setup an
 ## Launching the OP Stack chain is a straightforward process
 Follow the steps below to get started:
 
-1. _Visit [opstack.vercel.app](https://opstack.vercel.app)_: You can start the chain setup by visiting [opstack.vercel.app](https://opstack.vercel.app), where you'll find all the necessary resources and documentation or you can follow the steps in below.
-2. _Hardware Requirements_: Ensure that you have the following hardware specifications
+1. **Visit [opstack.vercel.app](https://opstack.vercel.app)**: You can start the chain setup by visiting [opstack.vercel.app](https://opstack.vercel.app), where you'll find all the necessary resources and documentation or you can follow the steps in below.
+2. **Hardware Requirements**: Ensure that you have the following hardware specifications
 
 ```
 Linux ubuntu 20.04 LTS
@@ -14,9 +14,9 @@ Min. 8GB RAM & 4 Core CPU
 Storage 250GB or more
 ```
 
-3. _Cloud Service Options_: You have the flexibility to use any cloud service provider, such as [Digital Ocean]([url](https://cloud.digitalocean.com/)), [AWS]([url](https://aws.amazon.com/)), [Google Cloud]([url](https://cloud.google.com/)), etc.,
+3. **Cloud Service Options**: You have the flexibility to use any cloud service provider, such as [Digital Ocean]([url](https://cloud.digitalocean.com/)), [AWS]([url](https://aws.amazon.com/)), [Google Cloud]([url](https://cloud.google.com/)), etc.,
 
-# Follow these simple steps to launch your very own L2 Optimism chain:
+## Follow these simple steps to launch your very own L2 Optimism chain:
 ## Step 1 - Clone the repository
 ```
 git clone https://github.com/Blocktheory/opstack-setup-script
@@ -97,7 +97,7 @@ nano blockscout/docker-compose/envs/common-blockscout.env
 ```
 You can refer to the below values in the environment file
 ```
-ETHEREUM_JSONRPC_VARIANT: 'geth'
+ETHEREUM_JSONRPC_VARIANT: "geth"
 ETHEREUM_JSONRPC_HTTP_URL: http://host.docker.internal:8545/
 ETHEREUM_JSONRPC_TRACE_URL: http://host.docker.internal:8545/
 INDEXER_DISABLE_PENDING_TRANSACTIONS_FETCHER: "true"
