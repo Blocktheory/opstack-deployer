@@ -69,7 +69,7 @@
 			</div>
 			<h2 class="font-bold text-xl mb-4 text-center">Configure Rollup</h2>
 
-			<Stepper start={2}>
+			<Stepper>
 				<Step locked={lockedStep1}>
 					<svelte:fragment slot="header"
 						>Initial Setup</svelte:fragment
