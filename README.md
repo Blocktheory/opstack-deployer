@@ -1,32 +1,34 @@
 ![logo (6) 1](https://github.com/Blocktheory/opstack-setup-script/assets/13044958/418b5780-2bf5-46af-99a2-66f049aedc25)
 # Launch OP Stack L2 Chain
-This repository contains deployment scripts to quick setup & launch the L2 Optimism chain based on opstack.
+Our repository contains deployment scripts that facilitate the seamless setup and launch of the L2 Optimism chain, built on the robust opstack platform. Our aim is to simplify the L2 chain deployment process, allowing developers and users to effortlessly experience the power and potential of the L2 Optimism solution. With our user-friendly scripts, you can quickly configure and deploy the L2 chain.
 
-## Steps to Launch Chain
-You can visit [opstack.vercel.app](https://opstack.vercel.app)
-or Follow the steps below
+## Launching the OP Stack chain is a straightforward process
+Follow the steps below to get started:
 
-#### Hardware Requirements
+1. _Visit [opstack.vercel.app](https://opstack.vercel.app)_: You can start the chain setup by visiting [opstack.vercel.app](https://opstack.vercel.app), where you'll find all the necessary resources and documentation or you can follow the steps in below.
+2. _Hardware Requirements_: Ensure that you have the following hardware specifications
+
 ```
 Linux ubuntu 20.04 LTS
 Min. 8GB RAM & 4 Core CPU
 Storage 250GB or more
 ```
-You can use any cloud services like [Digital Ocean]([url](https://cloud.digitalocean.com/)), [AWS]([url](https://aws.amazon.com/)), [Google Cloud]([url](https://cloud.google.com/)), etc.,
 
-## Step 1
-Clone the repository
+3. _Cloud Service Options_: You have the flexibility to use any cloud service provider, such as [Digital Ocean]([url](https://cloud.digitalocean.com/)), [AWS]([url](https://aws.amazon.com/)), [Google Cloud]([url](https://cloud.google.com/)), etc.,
+
+# Follow these simple steps to launch your very own L2 Optimism chain:
+## Step 1 - Clone the repository
 ```
 git clone https://github.com/Blocktheory/opstack-setup-script
 // navigate to the deploy script folder
 cd opstack-setup-script/deploy-scripts
 ```
 
-## Step 2
-Create your environment file with following keys, you can use command `nano .env` or `vim .env` to create it 
+## Step 2 - Create your environment file
+Create a new environment file using nano .env or vim .env, and add the following keys:
 ```
 CHAIN_NAME="Chain Name"
-CHAIN_ID=
+CHAIN_ID=730577
 ETH_RPC_URL="L1 RPC End Point"
 ADMIN_PUBLIC_ADDRESS="Admin public address"
 ADMIN_PRIVATE_KEY="Admin private key "
@@ -37,13 +39,13 @@ BATCHER_PRIVATE_KEY="Batcher private key "
 PROPOSER_PUBLIC_ADDRESS="proposer public address"
 PROPOSER_PRIVATE_KEY="Properser private key "
 ```
-#### Funding requirement in each accounts:
-- Admin — 2 ETH
-- Proposer — 5 ETH
-- Batcher — 10 ETH
+#### Make sure to define the funding requirements for each account::
+- Admin: 2 ETH
+- Proposer: 5 ETH
+- Batcher: 10 ETH
 
-## Step 3
-Once you've created the environemnt file inside the deploy-scripts folder, You can run the initial scripts with command
+## Step 3 - Run initial script
+After creating the environment file, run the initial script using:
 ```
 bash ./initial.sh
 or
@@ -70,7 +72,7 @@ or
 
 ## L2 Chain Deployed Successfully
 
-Once the script runs successfully you can now see the new chain up and running in the port **8545**. You can access it by using the RPC end points as `host:8454` along with chain id used earlier while running the script.
+Once the script runs successfully you can now see the new chain up and running in the port **8545**. You can access it by using the RPC end points as `host:8545` along with chain id used earlier while running the script.
 
 The best way to submit feedback and report bugs is to [open a GitHub issue](https://github.com/Blocktheory/opstack-setup-script/issues)
 
