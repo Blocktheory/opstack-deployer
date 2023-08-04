@@ -83,7 +83,7 @@
 								Chain Id
 								<sup class="text-md text-red-600">*</sup>
 							</label>
-							<InfoContent content="this is Chain ID" />
+							<!-- <InfoContent content="this is Chain ID" /> -->
 						</div>
 						<input
 							class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -103,9 +103,9 @@
 								Chain Name
 								<sup class="text-md text-red-600">*</sup>
 							</label>
-							<InfoContent
+							<!-- <InfoContent
 								content="What you would like to call your new chain"
-							/>
+							/> -->
 						</div>
 						<input
 							class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -125,9 +125,9 @@
 								Layer 1 RPC Url
 								<sup class="text-md text-red-600">*</sup>
 							</label>
-							<InfoContent
+							<!-- <InfoContent
 								content="The layer 1 chain RPC end point"
-							/>
+							/> -->
 						</div>
 						<input
 							class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -148,7 +148,7 @@
 								<sup class="text-md text-red-600">*</sup>
 							</label>
 							<InfoContent
-								content="The kind of RPC URL you are using"
+								content="The type of L1 server to which you connect, which can optimize requests."
 							/>
 						</div>
 						<select
@@ -167,9 +167,9 @@
 					</div>
 				</Step>
 				<Step>
-					<svelte:fragment slot="header"
-						>Setup Wallets (Optional)</svelte:fragment
-					>
+					<svelte:fragment slot="header">
+						Setup Wallets <span style="font-style: italic">(Optional)</span>
+					</svelte:fragment>
 					<div class=" card p-5 mb-3">
 						<!-- owner -->
 
@@ -430,7 +430,12 @@
 						><br /> <br /> For more details refer:
 						<a
 							href="https://stack.optimism.io/#dive-deeper-into-the-op-stack"
-							class="underline">Opstack Offical Docs</a
+							class="underline">OPStack Offical Docs</a
+						>
+						<br /> <br /> For setting up explorer, Please refer 
+						<a
+							href="https://github.com/blocktheory/opstack-setup-script"
+							class="underline">here</a
 						>
 					</p>
 				</Step>
