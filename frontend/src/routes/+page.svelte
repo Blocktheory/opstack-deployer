@@ -58,7 +58,7 @@
 				Launch OP Stack Chain
 				<br /><br />
 				Use below interface and kick off your chain on OPStack. This interface
-				is currently intended to help launching L2 chain based on OP stack.
+				is currently intended to help launching L2 chain based on OP stack. You can use this chain to perform tests and prepare for the superchain, or you can modify it to adapt it to your own needs
 				Find more details
 				<a
 					href="https://github.com/Blocktheory/opstack-setup-script"
