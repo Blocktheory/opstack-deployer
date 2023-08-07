@@ -49,9 +49,18 @@
 	<meta name="title" content="OPStack | Deploy L2 Chain" />
 	<meta property="og:url" content="https://opstack.vercel.app/" />
 	<meta property="og:title" content="OPStack | Deploy L2 Chain" />
-	<meta property="og:description" content="This interface helps to kick off your chain on OPStack. This interface is currently intended to help launching L2 chain based on OP stack. You can use this chain to perform tests and prepare for the superchain, or you can modify it to adapt it to your own needs."  />
-	<meta property="og:image" content="https://mirror-media.imgix.net/publication-images/1C-0OTP4DRCWJY17XvOHO.png" />
-	<meta name="description" content="This interface helps to kick off your chain on OPStack. This interface is currently intended to help launching L2 chain based on OP stack. You can use this chain to perform tests and prepare for the superchain, or you can modify it to adapt it to your own needs." />
+	<meta
+		property="og:description"
+		content="This interface helps to kick off your chain on OPStack. This interface is currently intended to help launching L2 chain based on OP stack. You can use this chain to perform tests and prepare for the superchain, or you can modify it to adapt it to your own needs."
+	/>
+	<meta
+		property="og:image"
+		content="https://mirror-media.imgix.net/publication-images/1C-0OTP4DRCWJY17XvOHO.png"
+	/>
+	<meta
+		name="description"
+		content="This interface helps to kick off your chain on OPStack. This interface is currently intended to help launching L2 chain based on OP stack. You can use this chain to perform tests and prepare for the superchain, or you can modify it to adapt it to your own needs."
+	/>
 </svelte:head>
 
 <section>
@@ -63,7 +72,9 @@
 				Launch OP Stack Chain
 				<br /><br />
 				Use below interface and kick off your chain on OPStack. This interface
-				is currently intended to help launching L2 chain based on OP stack. You can use this chain to perform tests and prepare for the superchain, or you can modify it to adapt it to your own needs. Find more details
+				is currently intended to help launching L2 chain based on OP stack.
+				You can use this chain to perform tests and prepare for the superchain,
+				or you can modify it to adapt it to your own needs. Find more details
 				<a
 					href="https://github.com/Blocktheory/opstack-setup-script"
 					target="_blank"
@@ -73,7 +84,7 @@
 			</div>
 			<h2 class="font-bold text-xl mb-4 text-center">Configure Rollup</h2>
 
-			<Stepper>
+			<Stepper start={2}>
 				<Step locked={lockedStep1}>
 					<svelte:fragment slot="header"
 						>Initial Setup</svelte:fragment
@@ -172,7 +183,9 @@
 				</Step>
 				<Step>
 					<svelte:fragment slot="header">
-						Setup Wallets <span style="font-style: italic">(Optional)</span>
+						Setup Wallets <span style="font-style: italic"
+							>(Optional)</span
+						>
 					</svelte:fragment>
 					<div class=" card p-5 mb-3">
 						<!-- owner -->
@@ -355,6 +368,7 @@
 					<p class="text-md">Clone the repository</p>
 
 					<CodeBlock
+						background={"bg-gray-400"}
 						language="bash"
 						code={`
 					git clone https://github.com/Blocktheory/opstack-setup-script \n// navigate to the deploy script folder\ncd opstack-setup-script/deploy-scripts\n
@@ -374,6 +388,7 @@
 						<!-- Source -->
 					</p>
 					<CodeBlock
+						background={"bg-gray-400"}
 						language="bash"
 						code={`
 					CHAIN_NAME=${env_variables.CHAIN_NAME}\nCHAIN_ID=${env_variables.CHAIN_ID}\nETH_RPC_URL=${env_variables.ETH_RPC_URL} \nRPC_KIND=${env_variables.ETH_RPC_KIND}			\nADMIN_PUBLIC_ADDRESS=${env_variables.ADMIN_PUBLIC_ADDRESS}				\nADMIN_PRIVATE_KEY=${env_variables.ADMIN_PRIVATE_KEY}		\nSEQUENCER_PUBLIC_ADDRESS=${env_variables.SEQUENCER_PUBLIC_ADDRESS}	\nSEQUENCER_PRIVATE_KEY=${env_variables.SEQUENCER_PRIVATE_KEY}					\nBATCHER_PUBLIC_ADDRESS=${env_variables.BATCHER_PUBLIC_ADDRESS}			\nBATCHER_PRIVATE_KEY=${env_variables.BATCHER_PRIVATE_KEY}				\nPROPOSER_PUBLIC_ADDRESS=${env_variables.PROPOSER_PUBLIC_ADDRESS}			\nPROPOSER_PRIVATE_KEY=${env_variables.PROPOSER_PRIVATE_KEY}
@@ -387,6 +402,7 @@
 					</p>
 
 					<CodeBlock
+						background={"bg-gray-400"}
 						language="bash"
 						code={`
 							bash ./initial.sh\n or\n./initial.sh
@@ -408,6 +424,7 @@
 						Then we can run the setup / final script with below command
 					</p>
 					<CodeBlock
+						background={"bg-gray-400"}
 						language="bash"
 						code={`
 					bash ./setup.sh\nor\n./setup.sh
@@ -436,7 +453,7 @@
 							href="https://stack.optimism.io/#dive-deeper-into-the-op-stack"
 							class="underline">OPStack Offical Docs</a
 						>
-						<br /> <br /> For setting up explorer, Please refer 
+						<br /> <br /> For setting up explorer, Please refer
 						<a
 							href="https://github.com/blocktheory/opstack-setup-script"
 							class="underline">here</a
