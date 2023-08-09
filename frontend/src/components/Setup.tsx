@@ -1,6 +1,55 @@
+import { useState } from "react";
 
 
 function Setup() {
+  const [currStep, setStep] = useState(0);
+  return (
+    <>
+      {currStep == 0 &&
+        <Step1></Step1>
+      }
+      {currStep == 1 &&
+        <Step2></Step2>
+      }
+      <FooterButtons currStep={currStep} onNext={() => setStep(1)} onBack={() => setStep(0)} onReset={() => { alert('Reset') }}></FooterButtons>
+
+    </>
+  )
+}
+
+export default Setup;
+
+
+const FooterButtons = ({ onNext, onBack, onReset, currStep }: any) => {
+  return (
+    <div className="flex justify-around  sticky bottom-0 bg-white py-3">
+      <button
+        onClick={onReset}
+        className="mx-2 rounded-full border hover:bg-black text-black hover:text-white font-semibold py-2 px-4"
+      >
+        Reset
+      </button>
+      <span>
+        {currStep != 0 &&
+          <button
+            onClick={onBack}
+            className="mx-2 rounded-full border bg-white hover:bg-black text-black hover:text-white font-semibold py-2 px-4 "
+          >
+            &larr; Back
+          </button>
+        }
+        <button
+          onClick={onNext}
+          className="mx-2 rounded-full border bg-black hover:bg-white text-white hover:text-black font-semibold py-2 px-4 "
+        >
+          Next &rarr;
+        </button>
+      </span>
+    </div>
+  );
+};
+
+function Step1() {
   return (
     <>
       <div className="mx-48">
@@ -23,7 +72,7 @@ function Setup() {
 
         <h1 className="text-bold text-2xl my-5" >Wallet Setup (Optional)</h1>
         <div className="bg-white  rounded p-6 shadow-md">
-          <div className="p-4  grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="p-4  grid grid-cols-1 md:grid-cols-2 gap-4 mb-2">
             <div className="w-full ">
               <label htmlFor="input1" className="block mb-1">Admin Public Address
               </label>
@@ -76,39 +125,13 @@ function Setup() {
           <p>Recommended ETH for Batcher: <b>10 ETH</b></p>
         </div>
       </div>
-
-      <FooterButtons onNext={console.log} onBack={() => { }} onReset={() => { }}></FooterButtons>
-
     </>
   )
 }
 
-export default Setup;
 
-
-const FooterButtons = ({ onNext, onBack, onReset }: any) => {
+function Step2() {
   return (
-    <div className="flex justify-around  sticky bottom-0 bg-white py-3">
-      <button
-        onClick={onReset}
-        className="mx-2 rounded-full border hover:bg-black text-black hover:text-white font-semibold py-2 px-4"
-      >
-        Reset
-      </button>
-      <span>
-        {/* <button
-          onClick={onBack}
-          className="mx-2 rounded-full bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-2 px-4 "
-        >
-          Back
-        </button> */}
-        <button
-          onClick={onNext}
-          className="mx-2 rounded-full border bg-black hover:bg-white text-white hover:text-black font-semibold py-2 px-4 "
-        >
-          Next &rarr;
-        </button>
-      </span>
-    </div>
-  );
-};
+    <></>
+  )
+}
