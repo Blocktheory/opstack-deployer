@@ -270,17 +270,21 @@ function Step2() {
                     The best way to submit feedback and report bugs is to
                     <a
                       href="https://github.com/Blocktheory/opstack-setup-script/issues"
-                      className="underline">open a GitHub issue</a
-                    ><br /> <br /> For more details refer:
+                      className="underline px-1">Ppen a GitHub issue
+                    </a>
+                    <br />
+                    <br />
+                    For more details refer:
                     <a
                       href="https://stack.optimism.io/#dive-deeper-into-the-op-stack"
-                      className="underline">OPStack Offical Docs</a
-                    >
-                    <br /> <br /> For setting up explorer, Please refer
+                      className="px-1 underline">OPStack Offical Docs
+                    </a>
+                    <br />
+                    <br />
+                    For setting up explorer, Please refer
                     <a
                       href="https://github.com/blocktheory/opstack-setup-script"
-                      className="underline">here</a
-                    >
+                      className="underline px-1">here</a>
                   </p>
 
                 </p>
