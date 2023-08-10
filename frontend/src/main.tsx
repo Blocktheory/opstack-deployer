@@ -14,6 +14,10 @@ import "./index.css"
  * @see https://wagmi.sh/react/WagmiConfig
  * @see https://www.rainbowkit.com/docs/installation
  */
+
+
+
+
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <WagmiConfig config={config}>
