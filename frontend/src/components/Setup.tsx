@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { initWasm } from "@trustwallet/wallet-core";
 import { Wallet } from '../utils/wallet'
 import { useAtom } from 'jotai'
-import { atomWithStorage } from 'jotai/utils';
+import { atomWithStorage, RESET } from 'jotai/utils';
 
 const getAddress = async () => {
   const walletCore = await initWasm();
@@ -15,6 +15,7 @@ const getAddress = async () => {
   const proposerAddr = await proposer.createAccount();
   const batcherAddr = await batcher.createAccount();
   const sequencerAddr = await sequencer.createAccount();
+
   return {
     admin: adminAddr,
     proposer: proposerAddr,
@@ -24,11 +25,13 @@ const getAddress = async () => {
 };
 
 
-const addressFromStorage = atomWithStorage('address', {});
+const addressFromStorage = atomWithStorage('address', await getAddress());
+const textAtom = atomWithStorage('text', 'hello')
 
 
 function Setup() {
   const [currStep, setStep] = useState(0);
+  const [text, setText] = useAtom(textAtom)
   return (
     <>
       {currStep == 0 &&

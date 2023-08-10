@@ -14,38 +14,43 @@ export function App() {
   const { isConnected } = useAccount();
 
   return (
-    <>
-      <div className="flex p-3 mx-5 w-full justify-around">
+    <div className="bg-[#FEF7F8]">
+      <div className="flex p-3 fixed top-0 left-0 right-0 z-10 w-full justify-around z-1 bg-white">
 
         <img src={Image}></img>
 
         {/** @see https://www.rainbowkit.com/docs/connect-button */}
         <ConnectButton />
       </div>
-      <div className="bg-[#FEF7F8]">
+      <div className="bg-[#FEF7F8] p-14">
         {isConnected ? (
           <>
             <Setup />
           </>
         ) :
           (
-            <>
-              <div className="flex justify-center items-center h-3/4">
-                <div className="text-center">
-                  <h1 className="text-3xl font-bold">Deploy your OP Stack Chain</h1>
-                  <p className="mt-2">Use the following interface to launch your L2 chain on OPStack. This interface can be used for testing and preparing for the super-chain, or you can modify it to suit your needs. Learn more</p>
-                </div>
-              </div>
-              <div>
-              </div>
-            </>
-
+            <WelcomePage />
           )}
 
 
       </div>
-    </>
+    </div>
   );
 }
 
+
+function WelcomePage() {
+  return (
+    <>
+      <div className="flex justify-center items-center h-screen">
+        <div className="text-center">
+          <h1 className="text-3xl font-bold">Deploy your OP Stack Chain</h1>
+          <p className="mt-2">Use the following interface to launch your L2 chain on OPStack. <br /> This interface can be used for testing and preparing for the super-chain, or you can modify it to suit your needs. <a className="underline" href="https://stack.optimism.io/" target="_blank">Learn more</a></p>
+        </div>
+      </div>
+      <div>
+      </div>
+    </>
+  )
+}
 
