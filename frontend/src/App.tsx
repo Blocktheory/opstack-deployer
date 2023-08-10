@@ -4,7 +4,7 @@ import { useAccount } from "wagmi";
 import { Attestooooooor } from "./components";
 
 import Image from "./assets/logo.png"
-import Setup from "./components/Setup";
+import Setup from "./components/Setup/Setup";
 
 export function App() {
   /**
@@ -14,7 +14,7 @@ export function App() {
   const { isConnected } = useAccount();
 
   return (
-    <div className="bg-[#FEF7F8]">
+    <div className="bg-[#FEF7F8] h-screen ">
       <div className="flex p-3 fixed top-0 left-0 right-0 z-10 w-full justify-around z-1 bg-white">
 
         <img src={Image}></img>
@@ -22,7 +22,7 @@ export function App() {
         {/** @see https://www.rainbowkit.com/docs/connect-button */}
         <ConnectButton />
       </div>
-      <div className="bg-[#FEF7F8] p-14">
+      <div className="bg-[#FEF7F8] pt-14 pb-20 ">
         {isConnected ? (
           <>
             <Setup />
