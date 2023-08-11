@@ -32,6 +32,8 @@ function Step2({ address, setAddress, createFlagAtom }: any) {
   const [createFlag, setCreateFlag] = useAtom(createFlagAtom);
   const [loading, setLoading] = useState(false);
 
+  //disabled -> If accounts are not created. 
+
   const handleWalletCreate = async () => {
     setLoading(true);
     const addr = await getAddress();
@@ -43,12 +45,10 @@ function Step2({ address, setAddress, createFlagAtom }: any) {
   }
 
   return (
-    <div className="md:mx-24 lg:mx-48">
-      <h1 className="text-bold text-2xl my-5" >Wallet Setup (Optional) </h1>
-      <div className="bg-yellow-200 p-4 m-2 rounded-md">This step is optional.
-        <br /> - You can add the Public Address and Private Key for Admin, Batcher, Sequencer and Proposer by yourself in the .env file
-        <br /> or
-        <br /> -  We can create the accounts and autofill them for you
+    <div className="md:mx-24 lg:mx-48 mt-12">
+      <h1 className="text-bold text-2xl my-5 font-sans" >Wallet Setup  </h1>
+      <div className="bg-gray-200 p-4 m-2 rounded-md">
+        Content : Create a accounts for Admin, Batcher, Sequencer and Proposer
       </div>
 
 

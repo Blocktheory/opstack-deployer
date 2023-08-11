@@ -30,17 +30,19 @@ const createFlagAtom = atom(false);
 function Setup() {
   const [currStep, setStep] = useState(0);
   const [address, setAddress] = useAtom(addressFromStorage);
+
   const [fields, setFields] = useState({
-    CHAIN_NAME: "",
-    CHAIN_ID: 0,
-    ETH_RPC_URL: ""
+    CHAIN_NAME: "My-OPStack-Chain",
+    CHAIN_ID: Math.floor(Math.random() * 90000) + 10000,
+    ETH_RPC_URL: "https://rpc.ankr.com/eth_goerli"
   });
+  const fieldsStatus = fields.CHAIN_NAME && fields.CHAIN_ID && fields.ETH_RPC_URL;
   const [createFlag, setCreateFlag] = useAtom(createFlagAtom);
 
   const handleReset = () => {
     setFields({
       CHAIN_NAME: "",
-      CHAIN_ID: 0,
+      CHAIN_ID: Math.floor(Math.random() * 90000) + 10000,
       ETH_RPC_URL: ""
     })
     setAddress({});
@@ -61,7 +63,7 @@ function Setup() {
       {currStep == 2 &&
         <Step3 fields={fields} addressFromStorage={addressFromStorage}></Step3>
       }
-      <FooterButtons currStep={currStep} onNext={() => setStep((prev) => prev + 1)} onBack={() => setStep((prev) => prev - 1)} onReset={handleReset}></FooterButtons>
+      <FooterButtons fieldsStatus={fieldsStatus} currStep={currStep} onNext={() => setStep((prev) => prev + 1)} onBack={() => setStep((prev) => prev - 1)} onReset={handleReset}></FooterButtons>
 
     </>
   )
@@ -83,20 +85,20 @@ function Step1({ fields, setFields }: IStep1Props) {
 
   return (
     <>
-      <div className="md:mx-24 lg:mx-48">
-        <h1 className="text-bold text-2xl my-5" >Initial Setup</h1>
+      <div className="md:mx-24 lg:mx-48 mt-12">
+        <h1 className="font-bold text-2xl my-5 font-sans">Initial Setup</h1>
         <div className="bg-white rounded p-6 shadow-md grid grid-cols-1  gap-4">
           <div className="w-full ">
-            <label htmlFor="input1" className="block mb-1">Chain Id
+            <label htmlFor="input1" className="block mb-1 font-sans text-base font-semibold">Chain Id
             </label>
             <input onChange={handleInputChange} value={fields.CHAIN_ID} type="text" name="CHAIN_ID" id="chain_id" className=" w-full rounded  border-grey-300 border-2 focus:border-gray-500 focus:ring focus:ring-gray-200 p-4" placeholder="" />
           </div>
           <div className="w-full ">
-            <label htmlFor="input2" className="block mb-1">Chain Name</label>
+            <label htmlFor="input2" className="block mb-1 font-sans text-base font-semibold">Chain Name</label>
             <input onChange={handleInputChange} value={fields.CHAIN_NAME} type="text" name="CHAIN_NAME" id="chain_name" className="  w-full rounded border-grey-300 border-2 focus:border-gray-500 focus:ring focus:ring-gray-200 p-4" placeholder="" />
           </div>
           <div className="w-full ">
-            <label htmlFor="input3" className="block mb-1">Layer 1 RPC URL</label>
+            <label htmlFor="input3" className="block mb-1 font-sans text-base font-semibold">Layer 1 - RPC URL</label>
             <input onChange={handleInputChange} value={fields.ETH_RPC_URL} type="text" name="ETH_RPC_URL" id="rpc_url" className="  w-full rounded border-grey-300 border-2 focus:border-gray-500 focus:ring focus:ring-gray-200 p-4" placeholder="" />
           </div>
         </div>
