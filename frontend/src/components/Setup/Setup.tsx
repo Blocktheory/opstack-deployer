@@ -46,6 +46,7 @@ const addressFromStorage = atomWithStorage('address', await getAddress());
 
 function Setup() {
   const [currStep, setStep] = useState(0);
+  const [address, setAddress] = useAtom(addressFromStorage);
   const [fields, setFields] = useState({
     CHAIN_NAME: "",
     CHAIN_ID: 0,
@@ -60,7 +61,7 @@ function Setup() {
       {currStep == 1 &&
         <Step2 fields={fields} addressFromStorage={addressFromStorage}></Step2>
       }
-      <FooterButtons currStep={currStep} onNext={() => setStep(1)} onBack={() => setStep(0)} onReset={() => { alert('Reset') }}></FooterButtons>
+      <FooterButtons currStep={currStep} onNext={() => setStep(1)} onBack={() => setStep(0)} onReset={() => { setAddress(RESET) }}></FooterButtons>
 
     </>
   )
@@ -101,7 +102,7 @@ function Step1({ fields, setFields }: IStep1Props) {
           </div>
         </div>
 
-        <h1 className="text-bold text-2xl my-5" >Wallet Setup (Optional)</h1>
+        <h1 className="text-bold text-2xl my-5" >Wallet Setup </h1>
         <div className="bg-white  rounded p-6 shadow-md">
           <div className="p-4  grid grid-cols-1 md:grid-cols-2 gap-4 mb-2">
             <div className="w-full ">

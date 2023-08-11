@@ -1,8 +1,5 @@
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { useAccount } from "wagmi";
-
-import { Attestooooooor } from "./components";
-
 import Image from "./assets/logo.png"
 import Setup from "./components/Setup/Setup";
 
