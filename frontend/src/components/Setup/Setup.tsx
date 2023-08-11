@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
-import { initWasm } from "@trustwallet/wallet-core";
-import { Wallet } from '../../utils/wallet'
-import { useAtom } from 'jotai'
+
+import { atom, useAtom } from 'jotai'
 import { atomWithStorage, RESET } from 'jotai/utils';
 import FooterButtons from "./FooterButtons";
 import Step2 from "./Step2";
@@ -21,8 +20,11 @@ interface IStep1Props {
 }
 
 
+// Creating a flag to remember the address created
 const addressFromStorage = atomWithStorage('address', {});
 
+// Creating a flag to remember the state of user opting to create wallets or not
+const createFlagAtom = atom(false);
 
 
 function Setup() {
@@ -33,6 +35,18 @@ function Setup() {
     CHAIN_ID: 0,
     ETH_RPC_URL: ""
   });
+  const [createFlag, setCreateFlag] = useAtom(createFlagAtom);
+
+  const handleReset = () => {
+    setFields({
+      CHAIN_NAME: "",
+      CHAIN_ID: 0,
+      ETH_RPC_URL: ""
+    })
+    setAddress({});
+    setStep(0);
+    setCreateFlag(false);
+  }
 
   return (
     <>
@@ -41,13 +55,13 @@ function Setup() {
       }
       {
         currStep == 1 &&
-        <Step2 address={address} setAddress={setAddress}></Step2>
+        <Step2 address={address} setAddress={setAddress} createFlagAtom={createFlagAtom}></Step2>
 
       }
       {currStep == 2 &&
         <Step3 fields={fields} addressFromStorage={addressFromStorage}></Step3>
       }
-      <FooterButtons currStep={currStep} onNext={() => setStep((prev) => prev + 1)} onBack={() => setStep((prev) => prev - 1)} onReset={() => { setAddress(RESET) }}></FooterButtons>
+      <FooterButtons currStep={currStep} onNext={() => setStep((prev) => prev + 1)} onBack={() => setStep((prev) => prev - 1)} onReset={handleReset}></FooterButtons>
 
     </>
   )
@@ -75,15 +89,15 @@ function Step1({ fields, setFields }: IStep1Props) {
           <div className="w-full ">
             <label htmlFor="input1" className="block mb-1">Chain Id
             </label>
-            <input onChange={handleInputChange} value={fields.CHAIN_ID} type="text" name="CHAIN_ID" id="input1" className=" w-full rounded  border-grey-300 border-2 focus:border-blue-500 focus:ring focus:ring-blue-200 p-4" placeholder="Input 1" />
+            <input onChange={handleInputChange} value={fields.CHAIN_ID} type="text" name="CHAIN_ID" id="chain_id" className=" w-full rounded  border-grey-300 border-2 focus:border-gray-500 focus:ring focus:ring-gray-200 p-4" placeholder="" />
           </div>
           <div className="w-full ">
             <label htmlFor="input2" className="block mb-1">Chain Name</label>
-            <input onChange={handleInputChange} value={fields.CHAIN_NAME} type="text" name="CHAIN_NAME" id="input2" className="  w-full rounded border-grey-300 border-2 focus:border-blue-500 focus:ring focus:ring-blue-200 p-4" placeholder="Input 2" />
+            <input onChange={handleInputChange} value={fields.CHAIN_NAME} type="text" name="CHAIN_NAME" id="chain_name" className="  w-full rounded border-grey-300 border-2 focus:border-gray-500 focus:ring focus:ring-gray-200 p-4" placeholder="" />
           </div>
           <div className="w-full ">
             <label htmlFor="input3" className="block mb-1">Layer 1 RPC URL</label>
-            <input onChange={handleInputChange} value={fields.ETH_RPC_URL} type="text" name="RPC_URL" id="input3" className="  w-full rounded border-grey-300 border-2 focus:border-blue-500 focus:ring focus:ring-blue-200 p-4" placeholder="Input 3" />
+            <input onChange={handleInputChange} value={fields.ETH_RPC_URL} type="text" name="ETH_RPC_URL" id="rpc_url" className="  w-full rounded border-grey-300 border-2 focus:border-gray-500 focus:ring focus:ring-gray-200 p-4" placeholder="" />
           </div>
         </div>
       </div>

@@ -2,7 +2,7 @@ import { useState } from "react";
 import Loader from "../UI_Components/Loader";
 import { initWasm } from "@trustwallet/wallet-core";
 import { Wallet } from '../../utils/wallet'
-import { atom, useAtom } from "jotai";
+import { useAtom } from "jotai";
 
 const getAddress = async () => {
   // Creating Address for the required accounts for deploying the blockchain
@@ -25,10 +25,10 @@ const getAddress = async () => {
   }
 };
 
-// Creating a flag to remember the state of user opting to create wallets or not
-const createFlagAtom = atom(false);
 
-function Step2({ address, setAddress }: any) {
+
+
+function Step2({ address, setAddress, createFlagAtom }: any) {
   const [createFlag, setCreateFlag] = useAtom(createFlagAtom);
   const [loading, setLoading] = useState(false);
 

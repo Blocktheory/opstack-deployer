@@ -77,7 +77,7 @@ function Step3({ addressFromStorage, fields }: any) {
 
                                 <CopyBlock
                                     langugage={"bash"}
-                                    text={`CHAIN_NAME=${fields.CHAIN_NAME}\nCHAIN_ID=${fields.CHAIN_ID}\nETH_RPC_URL=${fields.ETH_RPC_URL}\nADMIN_PUBLIC_ADDRESS=${address.admin.publicAddr}\nADMIN_PRIVATE_KEY=${address.admin.privateKey}		\nSEQUENCER_PUBLIC_ADDRESS=${address.sequencer.publicAddr}	\nSEQUENCER_PRIVATE_KEY=${address.sequencer.privateKey}					\nBATCHER_PUBLIC_ADDRESS=${address.batcher.publicAddr}			\nBATCHER_PRIVATE_KEY=${address.batcher.privateKey}				\nPROPOSER_PUBLIC_ADDRESS=${address.proposer.publicAddr}			\nPROPOSER_PRIVATE_KEY=${address.proposer.privateKey}`}
+                                    text={`CHAIN_NAME=${fields.CHAIN_NAME}\nCHAIN_ID=${fields.CHAIN_ID}\nETH_RPC_URL=${fields.ETH_RPC_URL}\nADMIN_PUBLIC_ADDRESS=${address?.admin?.publicAddr || ""}\nADMIN_PRIVATE_KEY=${address?.admin?.privateKey || ""}		\nSEQUENCER_PUBLIC_ADDRESS=${address?.sequencer?.publicAddr || ""}	\nSEQUENCER_PRIVATE_KEY=${address?.sequencer?.privateKey || ""}					\nBATCHER_PUBLIC_ADDRESS=${address?.batcher?.publicAddr || ""}			\nBATCHER_PRIVATE_KEY=${address?.batcher?.privateKey || ""}				\nPROPOSER_PUBLIC_ADDRESS=${address?.proposer?.publicAddr || ""}			\nPROPOSER_PRIVATE_KEY=${address?.proposer?.privateKey || ""}`}
                                     codeBlock
                                     theme={dracula}
                                     showLineNumbers={false}
