@@ -1,194 +1,130 @@
-import { useAtom } from "jotai";
-import { CopyBlock, dracula } from "react-code-blocks";
+import { useState } from "react";
+import Loader from "../UI_Components/Loader";
+import { initWasm } from "@trustwallet/wallet-core";
+import { Wallet } from '../../utils/wallet'
+import { atom, useAtom } from "jotai";
 
+const getAddress = async () => {
+  // Creating Address for the required accounts for deploying the blockchain
+  const walletCore = await initWasm();
+  const admin = new Wallet(walletCore);
+  const proposer = new Wallet(walletCore);
+  const batcher = new Wallet(walletCore);
+  const sequencer = new Wallet(walletCore);
 
+  const adminAddr = await admin.createAccount();
+  const proposerAddr = await proposer.createAccount();
+  const batcherAddr = await batcher.createAccount();
+  const sequencerAddr = await sequencer.createAccount();
 
-let address = {
-    CHAIN_NAME: "",
-    CHAIN_ID: "",
-    ETH_RPC_URL: "",
-    ETH_RPC_KIND: "",
-    ADMIN_PUBLIC_ADDRESS: "",
-    ADMIN_PRIVATE_KEY: "",
-    SEQUENCER_PUBLIC_ADDRESS: "",
-    SEQUENCER_PRIVATE_KEY: "",
-    BATCHER_PUBLIC_ADDRESS: "",
-    BATCHER_PRIVATE_KEY: "",
-    PROPOSER_PUBLIC_ADDRESS: "",
-    PROPOSER_PRIVATE_KEY: "",
+  return {
+    admin: adminAddr,
+    proposer: proposerAddr,
+    batcher: batcherAddr,
+    sequencer: sequencerAddr
+  }
 };
 
+// Creating a flag to remember the state of user opting to create wallets or not
+const createFlagAtom = atom(false);
+
+function Step2({ address, setAddress }: any) {
+  const [createFlag, setCreateFlag] = useAtom(createFlagAtom);
+  const [loading, setLoading] = useState(false);
+
+  const handleWalletCreate = async () => {
+    setLoading(true);
+    const addr = await getAddress();
+    setAddress(addr)
+    setTimeout(() => {
+      setCreateFlag(true);
+      setLoading(false);
+    }, 1000)
+  }
+
+  return (
+    <div className="md:mx-24 lg:mx-48">
+      <h1 className="text-bold text-2xl my-5" >Wallet Setup (Optional) </h1>
+      <div className="bg-yellow-200 p-4 m-2 rounded-md">This step is optional.
+        <br /> - You can add the Public Address and Private Key for Admin, Batcher, Sequencer and Proposer by yourself in the .env file
+        <br /> or
+        <br /> -  We can create the accounts and autofill them for you
+      </div>
 
 
-
-function Step2({ addressFromStorage, fields }: any) {
-    const [address, _]: any = useAtom(addressFromStorage);
-    return (
-        <div className="mx-48">
-            <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
-                <div className="grid gap-6 row-gap-10">
-                    <div className="lg:py-6 lg:pr-16">
-                        <div className="flex">
-                            <div className="flex flex-col items-center mr-4 ">
-                                <div>
-                                    <div className="flex items-center justify-center w-10 h-10 border rounded-full">
-                                        1
-                                    </div>
-                                </div>
-                                <div className="w-px h-full bg-gray-300" />
-                            </div>
-                            <div className="pt-1 pb-8 w-full">
-                                <p className="mb-2 text-lg font-bold">Hardware Requirments</p>
-                                <p className="text-gray-700">
-                                    <div className="border p-4 bg-gray-100 w-10/12">
-                                        OS: Linux Ubuntu 20.04 LTS
-                                        <br />RAM: Min. 8GB & 4 CPUs
-                                        <br />
-                                        Storage: 250GB or more
-                                    </div>
-                                    <p className="text-lg text-gray-700 font-semibold">
-                                        You can use any cloud services like Digital Ocean, AWS,
-                                        Google Cloud, etc.,
-                                    </p>
-                                </p>
-                            </div>
-                        </div>
-                        <div className="flex">
-                            <div className="flex flex-col items-center mr-4">
-                                <div>
-                                    <div className="flex items-center justify-center w-10 h-10 border rounded-full">
-                                        2
-                                    </div>
-                                </div>
-                                <div className="w-px h-full bg-gray-300" />
-                            </div>
-                            <div className="pt-1 pb-8 w-full">
-                                <p className="mb-2 text-lg font-bold">Clone the Repsistory</p>
-                                <CopyBlock
-                                    text={`git clone https://github.com/Blocktheory/opstack-setup-script \ncd opstack-setup-script/deploy-scripts\n`}
-                                    language={"bash"}
-                                    codeBlock
-                                    theme={dracula}
-                                    showLineNumbers={false}
-                                />
-                                <p className="text-lg text-gray-700 font-semibold">
-                                    Create your environment file with following keys, you can use command nano .env or vim .env to create it.
-                                </p>
-
-                                <CopyBlock
-                                    langugage={"bash"}
-                                    text={`CHAIN_NAME=${fields.CHAIN_NAME}\nCHAIN_ID=${fields.CHAIN_ID}\nETH_RPC_URL=${fields.ETH_RPC_URL}\nADMIN_PUBLIC_ADDRESS=${address.admin.publicAddr}\nADMIN_PRIVATE_KEY=${address.admin.privateKey}		\nSEQUENCER_PUBLIC_ADDRESS=${address.sequencer.publicAddr}	\nSEQUENCER_PRIVATE_KEY=${address.sequencer.privateKey}					\nBATCHER_PUBLIC_ADDRESS=${address.batcher.publicAddr}			\nBATCHER_PRIVATE_KEY=${address.batcher.privateKey}				\nPROPOSER_PUBLIC_ADDRESS=${address.proposer.publicAddr}			\nPROPOSER_PRIVATE_KEY=${address.proposer.privateKey}`}
-                                    codeBlock
-                                    theme={dracula}
-                                    showLineNumbers={true}
-                                >
-
-                                </CopyBlock>
-
-
-                            </div>
-                        </div>
-                        <div className="flex">
-                            <div className="flex flex-col items-center mr-4">
-                                <div>
-                                    <div className="flex items-center justify-center w-10 h-10 border rounded-full">
-                                        3
-                                    </div>
-                                </div>
-                                <div className="w-px h-full bg-gray-300" />
-                            </div>
-                            <div className="pt-1 pb-8  w-full">
-                                <p className="mb-2 text-lg font-bold">Run the Scritps</p>
-                                <p className="text-gray-700">
-
-                                    <CopyBlock
-                                        language="bash"
-                                        text={`bash ./initial.sh\n or\n./initial.sh`}
-                                        codeBlock
-                                        theme={dracula}
-                                        showLineNumbers={false}
-                                    />
-
-
-
-
-                                    <p className="text-md">
-                                        Once initial.sh script runs successfully,
-                                        <br />
-                                        We can refresh the terminal using
-                                        <code className="card p-2"> source ~/.bashrc</code>
-                                        <br />
-                                        Then we can run the setup / final script with below command
-                                    </p>
-
-
-                                    <CopyBlock
-                                        language="bash"
-                                        text={`bash ./setup.sh\nor\n./setup.sh`}
-                                        codeBlock
-                                        theme={dracula}
-                                        showLineNumbers={false}
-                                    />
-
-                                    {/* <div className="bg-black p-3 text-white">
-                      bash ./setup.sh\nor\n./setup.sh
-                    </div> */}
-                                    <ul>
-                                        <li>- Performs Initializes the OP Stack Starts</li>
-                                        <li>- The OP Stack</li>
-                                    </ul>
-                                </p>
-                            </div>
-                        </div>
-                        <div className="flex">
-                            <div className="flex flex-col items-center mr-4">
-                                <div>
-                                    <div className="flex items-center justify-center w-10 h-10 border rounded-full">
-                                        4
-                                    </div>
-                                </div>
-                                <div className="w-px h-full bg-gray-300" />
-                            </div>
-                            <div className="pt-1 pb-8">
-                                <p className="mb-2 text-lg font-bold">L2 Chain Deployed Successfully</p>
-                                <p className="text-gray-700">
-                                    <p>
-                                        Once the script runs successfully you can now see the
-                                        new chain up and running in the port 8545. You can
-                                        access it by using the RPC end points as <code
-                                        >host:8454</code
-                                        >
-                                        along with chain id used earlier while running the script.
-                                        The best way to submit feedback and report bugs is to
-                                        <a
-                                            href="https://github.com/Blocktheory/opstack-setup-script/issues"
-                                            className="underline px-1">Open a GitHub issue
-                                        </a>
-                                        <br />
-                                        <br />
-                                        For more details refer:
-                                        <a
-                                            href="https://stack.optimism.io/#dive-deeper-into-the-op-stack"
-                                            className="px-1 underline">OPStack Offical Docs
-                                        </a>
-                                        <br />
-                                        <br />
-                                        For setting up explorer, Please refer
-                                        <a
-                                            href="https://github.com/blocktheory/opstack-setup-script"
-                                            className="underline px-1">here</a>
-                                    </p>
-
-                                </p>
-                            </div>
-                        </div>
-
-                    </div>
-
-                </div>
-            </div>
+      {loading ?
+        <div className="md:mx-24 lg:mx-48 ">
+          <div className="flex justify-center mt-10">
+            <Loader></Loader>
+          </div>
         </div>
-    );
-};
+        : !createFlag ?
+          <div className="flex justify-center mt-10">
+            <button
+              onClick={handleWalletCreate}
+              className="text-xl mx-2 rounded-full border bg-white  text-black hover:bg-black hover:text-white font-semibold py-3 px-10"
+            >
+              Create Accounts
+            </button>
+          </div>
+          :
+
+          <div className="bg-white  rounded p-6 shadow-md">
+            <div className="p-4  grid grid-cols-1 md:grid-cols-2 gap-4 mb-2">
+              <div className="w-full ">
+                <label htmlFor="input1" className="block mb-1">Admin Public Address
+                </label>
+                <input disabled value={address.admin.publicAddr} type="text" id="input1" className="bg-gray-200 text-xs w-full rounded  border-grey-300 border-2 focus:border-blue-500 focus:ring focus:ring-blue-200 p-4" placeholder="Input 1" />
+              </div>
+              <div className="w-full ">
+                <label htmlFor="input2" className="block mb-1">Admin Private Key</label>
+                <input disabled value={address.admin.privateKey} type="text" id="input2" className="bg-gray-200 text-xs w-full rounded border-grey-300 border-2 focus:border-blue-500 focus:ring focus:ring-blue-200 p-4" placeholder="Input 2" />
+              </div>
+            </div>
+            <p className="pb-4 p-2">Recommended ETH for Admin: <b>2 ETH</b></p>
+            <hr />
+            <div className="p-4  grid grid-cols-1 md:grid-cols-2 gap-4 mb-2">
+              <div className="w-full ">
+                <label htmlFor="input1" className="block mb-1">Sequencer Public Address
+                </label>
+                <input disabled value={address.sequencer.publicAddr} type="text" id="input1" className="bg-gray-200 text-xs w-full rounded  border-grey-300 border-2 focus:border-blue-500 focus:ring focus:ring-blue-200 p-4" placeholder="Input 1" />
+              </div>
+              <div className="w-full ">
+                <label htmlFor="input2" className="block mb-1">Sequencer Private Key</label>
+                <input disabled value={address.sequencer.privateKey} type="text" id="input2" className="bg-gray-200 text-xs  w-full rounded border-grey-300 border-2 focus:border-blue-500 focus:ring focus:ring-blue-200 p-4" placeholder="Input 2" />
+              </div>
+            </div>
+            <hr />
+            <div className="p-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="w-full ">
+                <label htmlFor="input1" className="block mb-1">Proposer Public Address
+                </label>
+                <input disabled value={address.proposer.publicAddr} type="text" id="input1" className="bg-gray-200 text-xs w-full rounded  border-grey-300 border-2 focus:border-blue-500 focus:ring focus:ring-blue-200 p-4" placeholder="Input 1" />
+              </div>
+              <div className="w-full ">
+                <label htmlFor="input2" className="block mb-1">Proposer Private Key</label>
+                <input disabled value={address.proposer.privateKey} type="text" id="input2" className="bg-gray-200 text-xs  w-full rounded border-grey-300 border-2 focus:border-blue-500 focus:ring focus:ring-blue-200 p-4" placeholder="Input 2" />
+              </div>
+            </div>
+            <p className="pb-4 p-2" >Recommended ETH for Proposer: <b>5 ETH</b></p>
+
+            <hr className="" />
+            <div className=" p-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="w-full ">
+                <label htmlFor="input1" className="block mb-1">Batcher Public Address
+                </label>
+                <input disabled value={address.batcher.publicAddr} type="text" id="input1" className=" bg-gray-200 text-xs w-full rounded  border-grey-300 border-2 focus:border-blue-500 focus:ring focus:ring-blue-200 p-4" placeholder="Input 1" />
+              </div>
+              <div className="w-full ">
+                <label htmlFor="input2" className="block mb-1">Batcher Private Key</label>
+                <input disabled value={address.batcher.privateKey} type="text" id="input2" className="bg-gray-200 text-xs  w-full rounded border-grey-300 border-2 focus:border-blue-500 focus:ring focus:ring-blue-200 p-4" placeholder="Input 2" />
+              </div>
+            </div>
+            <p>Recommended ETH for Batcher: <b>10 ETH</b></p>
+          </div>
+      }
+    </div>
+  )
+}
 
 export default Step2;

@@ -19,7 +19,7 @@ function FooterButtons({ onNext, onBack, onReset, currStep }: any) {
                         &larr; Back
                     </button>
                 }
-                {currStep == 0 &&
+                {currStep != 2 &&
                     <button
                         onClick={onNext}
                         className="mx-2 rounded-full border bg-black  text-white  font-semibold py-2 px-4 "
@@ -27,7 +27,7 @@ function FooterButtons({ onNext, onBack, onReset, currStep }: any) {
                         Next &rarr;
                     </button>
                 }
-                {currStep != 0 &&
+                {currStep == 2 &&
                     <button
                         className="mx-2 rounded-full border bg-black hover:bg-white text-white hover:text-black font-semibold py-2 px-4 "
                     >
