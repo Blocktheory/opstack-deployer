@@ -47,7 +47,7 @@ function Step2({ address, setAddress, createFlagAtom }: any) {
   return (
     <div className="md:mx-24 lg:mx-48 mt-12">
       <h1 className="text-bold text-2xl my-5 font-sans" >Wallet Setup  </h1>
-      <div className="bg-gray-200 p-4 m-2 rounded-md">
+      <div className="bg-gray-200 p-4 my-2 rounded-md">
         Content : Create a accounts for Admin, Batcher, Sequencer and Proposer
       </div>
 

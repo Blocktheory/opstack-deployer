@@ -3,20 +3,20 @@ import { CopyBlock, dracula } from "react-code-blocks";
 
 
 
-let address = {
-    CHAIN_NAME: "",
-    CHAIN_ID: "",
-    ETH_RPC_URL: "",
-    ETH_RPC_KIND: "",
-    ADMIN_PUBLIC_ADDRESS: "",
-    ADMIN_PRIVATE_KEY: "",
-    SEQUENCER_PUBLIC_ADDRESS: "",
-    SEQUENCER_PRIVATE_KEY: "",
-    BATCHER_PUBLIC_ADDRESS: "",
-    BATCHER_PRIVATE_KEY: "",
-    PROPOSER_PUBLIC_ADDRESS: "",
-    PROPOSER_PRIVATE_KEY: "",
-};
+// let address = {
+//     CHAIN_NAME: "",
+//     CHAIN_ID: "",
+//     ETH_RPC_URL: "",
+//     ETH_RPC_KIND: "",
+//     ADMIN_PUBLIC_ADDRESS: "",
+//     ADMIN_PRIVATE_KEY: "",
+//     SEQUENCER_PUBLIC_ADDRESS: "",
+//     SEQUENCER_PRIVATE_KEY: "",
+//     BATCHER_PUBLIC_ADDRESS: "",
+//     BATCHER_PRIVATE_KEY: "",
+//     PROPOSER_PUBLIC_ADDRESS: "",
+//     PROPOSER_PRIVATE_KEY: "",
+// };
 
 
 
@@ -46,7 +46,7 @@ function Step3({ addressFromStorage, fields }: any) {
                                         <br />
                                         Storage: 250GB or more
                                     </div>
-                                    <p className="text-lg text-gray-700 font-semibold">
+                                    <p className="text-md text-gray-700 my-4">
                                         You can use any cloud services like Digital Ocean, AWS,
                                         Google Cloud, etc.,
                                     </p>
@@ -71,7 +71,7 @@ function Step3({ addressFromStorage, fields }: any) {
                                     theme={dracula}
                                     showLineNumbers={false}
                                 />
-                                <p className="text-lg text-gray-700 font-semibold">
+                                <p className="text-md text-gray-700 my-4">
                                     Create your environment file with following keys, you can use command nano .env or vim .env to create it.
                                 </p>
 
@@ -112,7 +112,7 @@ function Step3({ addressFromStorage, fields }: any) {
 
 
 
-                                    <p className="text-md">
+                                    <p className="text-md text-gray-700 my-4">
                                         Once initial.sh script runs successfully,
                                         <br />
                                         We can refresh the terminal using
@@ -133,9 +133,9 @@ function Step3({ addressFromStorage, fields }: any) {
                                     {/* <div className="bg-black p-3 text-white">
                       bash ./setup.sh\nor\n./setup.sh
                     </div> */}
-                                    <ul>
-                                        <li>- Performs Initializes the OP Stack Starts</li>
-                                        <li>- The OP Stack</li>
+                                    <ul className="text-md text-gray-700 my-4">
+                                        <li>Performs Initializes the OP Stack Starts</li>
+                                        <li>The OP Stack</li>
                                     </ul>
                                 </p>
                             </div>
@@ -151,7 +151,7 @@ function Step3({ addressFromStorage, fields }: any) {
                             </div>
                             <div className="pt-1 pb-8">
                                 <p className="mb-2 text-lg font-bold">L2 Chain Deployed Successfully</p>
-                                <p className="text-gray-700">
+                                <p className="text-md text-gray-700 my-4">
                                     <p>
                                         Once the script runs successfully you can now see the
                                         new chain up and running in the port 8545. You can
@@ -162,21 +162,21 @@ function Step3({ addressFromStorage, fields }: any) {
                                         The best way to submit feedback and report bugs is to
                                         <a
                                             href="https://github.com/Blocktheory/opstack-setup-script/issues"
-                                            className="underline px-1">Open a GitHub issue
+                                            className="underline px-1">Open a GitHub issue.
                                         </a>
                                         <br />
                                         <br />
                                         For more details refer:
                                         <a
                                             href="https://stack.optimism.io/#dive-deeper-into-the-op-stack"
-                                            className="px-1 underline">OPStack Offical Docs
+                                            className="px-1 underline">OP Stack Offical Docs
                                         </a>
                                         <br />
                                         <br />
                                         For setting up explorer, Please refer
                                         <a
                                             href="https://github.com/blocktheory/opstack-setup-script"
-                                            className="underline px-1">here</a>
+                                            className="underline px-1">here.</a>
                                     </p>
 
                                 </p>
