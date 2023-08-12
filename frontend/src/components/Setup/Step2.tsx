@@ -70,40 +70,40 @@ function Step2({ address, setAddress, createFlagAtom }: any) {
           :
 
           <div className="bg-white  rounded p-6 shadow-md">
-            <div className="p-4  grid grid-cols-1 md:grid-cols-2 gap-4 mb-2">
+            <div className="p-4  grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="w-full ">
-                <label htmlFor="input1" className="block mb-1">Admin Public Address
+                <label htmlFor="input1" className=" font-sans block mb-1">Admin Public Address
                 </label>
-                <input disabled value={address.admin.publicAddr} type="text" id="input1" className="bg-gray-200 text-xs w-full rounded  border-grey-300 border-2 focus:border-blue-500 focus:ring focus:ring-blue-200 p-4" placeholder="Input 1" />
+                <input disabled value={address.admin.publicAddr} type="text" id="input1" className="bg-gray-200 text-xs w-full rounded  border-grey-300 border-2  p-4" placeholder="Input 1" />
               </div>
               <div className="w-full ">
-                <label htmlFor="input2" className="block mb-1">Admin Private Key</label>
-                <input disabled value={address.admin.privateKey} type="text" id="input2" className="bg-gray-200 text-xs w-full rounded border-grey-300 border-2 focus:border-blue-500 focus:ring focus:ring-blue-200 p-4" placeholder="Input 2" />
+                <label htmlFor="input2" className=" font-sans block mb-1">Admin Private Key</label>
+                <input disabled value={address.admin.privateKey} type="text" id="input2" className="bg-gray-200 text-xs w-full rounded border-grey-300 border-2   p-4" placeholder="Input 2" />
               </div>
             </div>
-            <p className="pb-4 p-2">Recommended ETH for Admin: <b>2 ETH</b></p>
+            <p className="pb-4 p-2 font-sans">Recommended ETH for Admin: <b>2 ETH</b></p>
             <hr />
             <div className="p-4  grid grid-cols-1 md:grid-cols-2 gap-4 mb-2">
               <div className="w-full ">
-                <label htmlFor="input1" className="block mb-1">Sequencer Public Address
+                <label htmlFor="input1" className=" font-sans block mb-1">Sequencer Public Address
                 </label>
-                <input disabled value={address.sequencer.publicAddr} type="text" id="input1" className="bg-gray-200 text-xs w-full rounded  border-grey-300 border-2 focus:border-blue-500 focus:ring focus:ring-blue-200 p-4" placeholder="Input 1" />
+                <input disabled value={address.sequencer.publicAddr} type="text" id="input1" className="bg-gray-200 text-xs w-full rounded  border-grey-300 border-2   p-4" placeholder="Input 1" />
               </div>
               <div className="w-full ">
-                <label htmlFor="input2" className="block mb-1">Sequencer Private Key</label>
-                <input disabled value={address.sequencer.privateKey} type="text" id="input2" className="bg-gray-200 text-xs  w-full rounded border-grey-300 border-2 focus:border-blue-500 focus:ring focus:ring-blue-200 p-4" placeholder="Input 2" />
+                <label htmlFor="input2" className=" font-sans block mb-1">Sequencer Private Key</label>
+                <input disabled value={address.sequencer.privateKey} type="text" id="input2" className="bg-gray-200 text-xs  w-full rounded border-grey-300 border-2   p-4" placeholder="Input 2" />
               </div>
             </div>
             <hr />
             <div className="p-4 grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="w-full ">
-                <label htmlFor="input1" className="block mb-1">Proposer Public Address
+                <label htmlFor="input1" className=" font-sans block mb-1">Proposer Public Address
                 </label>
-                <input disabled value={address.proposer.publicAddr} type="text" id="input1" className="bg-gray-200 text-xs w-full rounded  border-grey-300 border-2 focus:border-blue-500 focus:ring focus:ring-blue-200 p-4" placeholder="Input 1" />
+                <input disabled value={address.proposer.publicAddr} type="text" id="input1" className="bg-gray-200 text-xs w-full rounded  border-grey-300 border-2   p-4" placeholder="Input 1" />
               </div>
               <div className="w-full ">
-                <label htmlFor="input2" className="block mb-1">Proposer Private Key</label>
-                <input disabled value={address.proposer.privateKey} type="text" id="input2" className="bg-gray-200 text-xs  w-full rounded border-grey-300 border-2 focus:border-blue-500 focus:ring focus:ring-blue-200 p-4" placeholder="Input 2" />
+                <label htmlFor="input2" className=" font-sans block mb-1">Proposer Private Key</label>
+                <input disabled value={address.proposer.privateKey} type="text" id="input2" className="bg-gray-200 text-xs  w-full rounded border-grey-300 border-2   p-4" placeholder="Input 2" />
               </div>
             </div>
             <p className="pb-4 p-2" >Recommended ETH for Proposer: <b>5 ETH</b></p>
@@ -111,13 +111,13 @@ function Step2({ address, setAddress, createFlagAtom }: any) {
             <hr className="" />
             <div className=" p-4 grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="w-full ">
-                <label htmlFor="input1" className="block mb-1">Batcher Public Address
+                <label htmlFor="input1" className=" font-sans block mb-1">Batcher Public Address
                 </label>
-                <input disabled value={address.batcher.publicAddr} type="text" id="input1" className=" bg-gray-200 text-xs w-full rounded  border-grey-300 border-2 focus:border-blue-500 focus:ring focus:ring-blue-200 p-4" placeholder="Input 1" />
+                <input disabled value={address.batcher.publicAddr} type="text" id="input1" className=" bg-gray-200 text-xs w-full rounded  border-grey-300 border-2   p-4" placeholder="Input 1" />
               </div>
               <div className="w-full ">
-                <label htmlFor="input2" className="block mb-1">Batcher Private Key</label>
-                <input disabled value={address.batcher.privateKey} type="text" id="input2" className="bg-gray-200 text-xs  w-full rounded border-grey-300 border-2 focus:border-blue-500 focus:ring focus:ring-blue-200 p-4" placeholder="Input 2" />
+                <label htmlFor="input2" className=" font-sans block mb-1">Batcher Private Key</label>
+                <input disabled value={address.batcher.privateKey} type="text" id="input2" className="bg-gray-200 text-xs  w-full rounded border-grey-300 border-2   p-4" placeholder="Input 2" />
               </div>
             </div>
             <p>Recommended ETH for Batcher: <b>10 ETH</b></p>

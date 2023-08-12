@@ -20,7 +20,7 @@ export function App() {
         {/** @see https://www.rainbowkit.com/docs/connect-button */}
         <ConnectButton />
       </div>
-      <div className="bg-custom-gradient h-screen">
+      <div className="bg-custom-gradient">
 
         <div className="pt-14">
           {isConnected ? (

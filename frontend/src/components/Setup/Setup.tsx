@@ -3,8 +3,10 @@ import { useEffect, useState } from "react";
 import { atom, useAtom } from 'jotai'
 import { atomWithStorage, RESET } from 'jotai/utils';
 import FooterButtons from "./FooterButtons";
+import Step1 from "./Step1";
 import Step2 from "./Step2";
 import Step3 from "./Step3";
+
 
 
 type Fields = {
@@ -13,11 +15,7 @@ type Fields = {
   ETH_RPC_URL: string;
 };
 
-interface IStep1Props {
-  fields: Fields,
-  setFields: Function
 
-}
 
 
 // Creating a flag to remember the address created
@@ -72,40 +70,6 @@ function Setup() {
 export default Setup;
 
 
-function Step1({ fields, setFields }: IStep1Props) {
-
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
-
-    setFields((prevState: any) => {
-      return { ...prevState, [name]: value };
-    });
-  };
-
-
-  return (
-    <>
-      <div className="md:mx-24 lg:mx-48 mt-12">
-        <h1 className="font-bold text-2xl my-5 font-sans">Initial Setup</h1>
-        <div className="bg-white rounded p-6 shadow-md grid grid-cols-1  gap-4">
-          <div className="w-full ">
-            <label htmlFor="input1" className="block mb-1 font-sans text-base font-semibold">Chain Id
-            </label>
-            <input onChange={handleInputChange} value={fields.CHAIN_ID} type="text" name="CHAIN_ID" id="chain_id" className=" w-full rounded  border-grey-300 border-2 focus:border-gray-500 focus:ring focus:ring-gray-200 p-4" placeholder="" />
-          </div>
-          <div className="w-full ">
-            <label htmlFor="input2" className="block mb-1 font-sans text-base font-semibold">Chain Name</label>
-            <input onChange={handleInputChange} value={fields.CHAIN_NAME} type="text" name="CHAIN_NAME" id="chain_name" className="  w-full rounded border-grey-300 border-2 focus:border-gray-500 focus:ring focus:ring-gray-200 p-4" placeholder="" />
-          </div>
-          <div className="w-full ">
-            <label htmlFor="input3" className="block mb-1 font-sans text-base font-semibold">Layer 1 - RPC URL</label>
-            <input onChange={handleInputChange} value={fields.ETH_RPC_URL} type="text" name="ETH_RPC_URL" id="rpc_url" className="  w-full rounded border-grey-300 border-2 focus:border-gray-500 focus:ring focus:ring-gray-200 p-4" placeholder="" />
-          </div>
-        </div>
-      </div>
-    </>
-  )
-}
 
 
 
