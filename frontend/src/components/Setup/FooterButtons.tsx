@@ -21,7 +21,7 @@ function FooterButtons({ fieldsStatus, onNext, onBack, onReset, currStep }: any)
                     <button
                         disabled={!fieldsStatus}
                         onClick={onBack}
-                        className={`mx-2 rounded-full border bg-white  text-black  font-semibold py-2 px-4 ${!fieldsStatus && 'bg-gray'}`}
+                        className={`mx-2 rounded-full border bg-white  text-black  font-semibold py-2 px-4 `}
                     >
                         &larr; Back
                     </button>
@@ -29,7 +29,7 @@ function FooterButtons({ fieldsStatus, onNext, onBack, onReset, currStep }: any)
                 {currStep != 2 &&
                     <button
                         onClick={handleNext}
-                        className="mx-2 rounded-full border bg-black  text-white  font-semibold py-2 px-4 hover:bg-white hover:text-black"
+                        className={`mx-2 rounded-full border bg-black  text-white  font-semibold py-2 px-4  ${!fieldsStatus ? 'bg-gray-200 pointer-events-none' : 'hover:bg-white hover:text-black'}`}
                     >
                         Next &rarr;
                     </button>
