@@ -3,5 +3,5 @@ spec:
     services:
         - name: L2_Chain
           git:
-              branch: main
+              branch: feat/deploy-ui
               repo_clone_url: https://github.com/Blocktheory/opstack-deployer
