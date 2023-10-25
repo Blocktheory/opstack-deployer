@@ -6,27 +6,27 @@ spec:
               branch: feat-deploy-ui
               repo_clone_url: https://github.com/Blocktheory/opstack-deployer
           envs:
-            key : CHAIN_NAME
-            scope: RUN_TIME
-            key : CHAIN_ID
-            scope: RUN_TIME
-            key : ETH_RPC_URL
-            scope: RUN_TIME
-            key : ADMIN_PUBLIC_ADDRESS
-            scope: RUN_TIME
-            key : ADMIN_PRIVATE_KEY
-            scope: RUN_TIME		
-            key : SEQUENCER_PUBLIC_ADDRESS
-            scope: RUN_TIME	
-            key : SEQUENCER_PRIVATE_KEY
-            scope: RUN_TIME					
-            key : BATCHER_PUBLIC_ADDRESS
-            scope: RUN_TIME			
-            key : BATCHER_PRIVATE_KEY
-            scope: RUN_TIME				
-            key : PROPOSER_PUBLIC_ADDRESS
-            scope: RUN_TIME			
-            key : PROPOSER_PRIVATE_KEY
-            scope: RUN_TIME
-            key : RPC_KIND
-            scope: RUN_TIME
+              - key: CHAIN_NAME
+                scope: RUN_TIME
+              - key: CHAIN_ID
+                scope: RUN_TIME
+              - key: ETH_RPC_URL
+                scope: RUN_TIME
+              - key: ADMIN_PUBLIC_ADDRESS
+                scope: RUN_TIME
+              - key: ADMIN_PRIVATE_KEY
+                scope: RUN_TIME
+              - key: SEQUENCER_PUBLIC_ADDRESS
+                scope: RUN_TIME
+              - key: SEQUENCER_PRIVATE_KEY
+                scope: RUN_TIME
+              - key: BATCHER_PUBLIC_ADDRESS
+                scope: RUN_TIME
+              - key: BATCHER_PRIVATE_KEY
+                scope: RUN_TIME
+              - key: PROPOSER_PUBLIC_ADDRESS
+                scope: RUN_TIME
+              - key: PROPOSER_PRIVATE_KEY
+                scope: RUN_TIME
+              - key: RPC_KIND
+                scope: RUN_TIME
