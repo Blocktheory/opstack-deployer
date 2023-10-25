@@ -10,7 +10,7 @@ function Step3({ addressFromStorage, fields }: any) {
             </h1>
             <div className="flex items-center justify-center">
                 {/* https://github.com/Blocktheory/opstack-deployer */}
-                <a href="https://cloud.digitalocean.com/apps/new?repo=https://github.com/Blocktheory/opstack-deployer/tree/feat/deploy-ui">
+                <a href="https://cloud.digitalocean.com/apps/new?repo=https://github.com/Blocktheory/opstack-deployer/tree/feat-deploy-ui">
                     <img src="https://www.deploytodo.com/do-btn-blue.svg" alt="Deploy to DO" />
                 </a>
             </div>
