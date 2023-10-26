@@ -1,7 +1,8 @@
 spec:
     name: op-stack-deployer
     services:
-       - dockerfile_path: Dockerfile
+        - dockerfile_path: Dockerfile
+          name: opstackdeployer
           git:
               branch: feat-deploy-ui
               repo_clone_url: https://github.com/Blocktheory/opstack-deployer
