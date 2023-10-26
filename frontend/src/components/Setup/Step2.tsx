@@ -3,6 +3,7 @@ import Loader from "../UI_Components/Loader";
 import { initWasm } from "@trustwallet/wallet-core";
 import { Wallet } from "../../utils/wallet";
 import { useAtom } from "jotai";
+import { Input } from "../UI_Components/Input";
 
 const getAddress = async () => {
   // Creating Address for the required accounts for deploying the blockchain
@@ -69,35 +70,24 @@ function Step2({ address, setAddress, createFlagAtom }: any) {
         <div className="bg-white rounded-2xl p-6 shadow-2xl mt-6 mb-8">
           <div className="py-4 grid grid-cols-1 md:grid-cols-2 gap-4 pb-1.5">
             <div className="w-full ">
-              <label
+              <Input
                 htmlFor="input1"
-                className="font-sans block text-sm font-medium text-[#101521CC] mb-1"
-              >
-                <span className="font-semibold">Admin </span> Public Address
-              </label>
-              <input
-                disabled
-                value={address.admin.publicAddr}
-                type="text"
-                id="input1"
-                className="bg-gray-200 text-xs w-full rounded  border-grey-300 border-2  p-4"
-                placeholder="Input 1"
+                spanName="Admin"
+                name="Public Address"
+                inputId="input1"
+                inputType="text"
+                inputValue={address.admin.publicAddr}
               />
             </div>
             <div className="w-full ">
-              <label
+              <Input
                 htmlFor="input2"
-                className="font-sans block text-sm font-medium text-[#101521CC] mb-1"
-              >
-                <span className="font-semibold"> Admin</span> Private Key
-              </label>
-              <input
-                disabled
-                value={address.admin.privateKey}
-                type="text"
-                id="input2"
-                className="bg-gray-200 text-xs w-full rounded border-grey-300 border-2   p-4"
-                placeholder="Input 2"
+                spanName="Admin"
+                name="Private Key"
+                inputId="input2"
+                inputType="text"
+                inputValue={address.admin.privateKey}
+                isPrivate={true}
               />
             </div>
           </div>
@@ -107,70 +97,48 @@ function Step2({ address, setAddress, createFlagAtom }: any) {
           <hr />
           <div className="py-4  grid grid-cols-1 md:grid-cols-2 gap-4 mb-2">
             <div className="w-full ">
-              <label
+              <Input
                 htmlFor="input1"
-                className="font-sans block text-sm font-medium text-[#101521CC] mb-1"
-              >
-                <span className="font-semibold">Sequencer</span> Public Address
-              </label>
-              <input
-                disabled
-                value={address.sequencer.publicAddr}
-                type="text"
-                id="input1"
-                className="bg-gray-200 text-xs w-full rounded  border-grey-300 border-2   p-4"
-                placeholder="Input 1"
+                spanName="Sequencer"
+                name="Public Address"
+                inputId="input2"
+                inputType="text"
+                inputValue={address.sequencer.publicAddr}
               />
             </div>
             <div className="w-full ">
-              <label
-                htmlFor="input2"
-                className="font-sans block text-sm font-medium text-[#101521CC] mb-1"
-              >
-                <span className="font-semibold">Sequencer</span> Private Key
-              </label>
-              <input
-                disabled
-                value={address.sequencer.privateKey}
-                type="text"
-                id="input2"
-                className="bg-gray-200 text-xs  w-full rounded border-grey-300 border-2   p-4"
-                placeholder="Input 2"
+              <Input
+                htmlFor="input1"
+                spanName="Sequencer"
+                name="Private Key"
+                inputId="input2"
+                inputType="text"
+                inputValue={address.sequencer.privateKey}
+                isPrivate={true}
               />
             </div>
           </div>
           <hr />
           <div className="py-4 grid grid-cols-1 md:grid-cols-2 gap-4 pb-1.5">
             <div className="w-full ">
-              <label
+              <Input
                 htmlFor="input1"
-                className="font-sans block text-sm font-medium text-[#101521CC] mb-1"
-              >
-                <span className="font-semibold">Proposer</span> Public Address
-              </label>
-              <input
-                disabled
-                value={address.proposer.publicAddr}
-                type="text"
-                id="input1"
-                className="bg-gray-200 text-xs w-full rounded  border-grey-300 border-2   p-4"
-                placeholder="Input 1"
+                spanName="Proposer"
+                name="Public Address"
+                inputId="input2"
+                inputType="text"
+                inputValue={address.proposer.publicAddr}
               />
             </div>
             <div className="w-full ">
-              <label
-                htmlFor="input2"
-                className="font-sans block text-sm font-medium text-[#101521CC] mb-1"
-              >
-                <span className="font-semibold">Proposer</span> Private Key
-              </label>
-              <input
-                disabled
-                value={address.proposer.privateKey}
-                type="text"
-                id="input2"
-                className="bg-gray-200 text-xs  w-full rounded border-grey-300 border-2   p-4"
-                placeholder="Input 2"
+              <Input
+                htmlFor="input1"
+                spanName="Proposer"
+                name="Private Key"
+                inputId="input2"
+                inputType="text"
+                inputValue={address.proposer.privateKey}
+                isPrivate={true}
               />
             </div>
           </div>
@@ -181,35 +149,24 @@ function Step2({ address, setAddress, createFlagAtom }: any) {
           <hr className="" />
           <div className="py-4 grid grid-cols-1 md:grid-cols-2 gap-4 pb-1.5">
             <div className="w-full ">
-              <label
+              <Input
                 htmlFor="input1"
-                className="font-sans block text-sm font-medium text-[#101521CC] mb-1"
-              >
-                <span className="font-semibold">Batcher</span> Public Address
-              </label>
-              <input
-                disabled
-                value={address.batcher.publicAddr}
-                type="text"
-                id="input1"
-                className=" bg-gray-200 text-xs w-full rounded  border-grey-300 border-2   p-4"
-                placeholder="Input 1"
+                spanName="Batcher"
+                name="Public Address"
+                inputId="input1"
+                inputType="text"
+                inputValue={address.batcher.publicAddr}
               />
             </div>
             <div className="w-full ">
-              <label
+              <Input
                 htmlFor="input2"
-                className="font-sans block text-sm font-medium text-[#101521CC] mb-1"
-              >
-                <span className="font-semibold">Batcher</span> Private Key
-              </label>
-              <input
-                disabled
-                value={address.batcher.privateKey}
-                type="text"
-                id="input2"
-                className="bg-gray-200 text-xs  w-full rounded border-grey-300 border-2   p-4"
-                placeholder="Input 2"
+                spanName="Batcher"
+                name="Private Key"
+                inputId="input2"
+                inputType="text"
+                inputValue={address.batcher.privateKey}
+                isPrivate={true}
               />
             </div>
           </div>
