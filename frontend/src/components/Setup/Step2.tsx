@@ -43,7 +43,7 @@ function Step2({ address, setAddress, createFlagAtom }: any) {
   };
 
   return (
-    <div className="md:mx-24 lg:mx-48 mt-9 w-[55%] !mx-auto">
+    <div className="md:mx-24 lg:mx-52 mt-9 w-[60%] !mx-auto">
       <h1 className="font-bold text-2xl my-5 mb-4 font-sans text-[#101521CC]">
         Wallet Setup{" "}
       </h1>
