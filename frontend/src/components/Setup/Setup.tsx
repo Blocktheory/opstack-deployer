@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { atom, useAtom } from "jotai";
 import { atomWithStorage, RESET } from "jotai/utils";
@@ -13,6 +13,8 @@ type Fields = {
   ETH_RPC_URL: string;
 };
 
+const CHAIN_ID = 5
+
 // Creating a flag to remember the address created
 const addressFromStorage = atomWithStorage("address", {});
 
@@ -22,6 +24,27 @@ const createFlagAtom = atom(false);
 function Setup() {
   const [currStep, setStep] = useState(0);
   const [address, setAddress] = useAtom(addressFromStorage);
+
+
+  useEffect(() => {
+
+    const getURLs = async () => {
+      const result = await fetch("https://chainid.network/chains.json");
+      const JSONResult = await result.json();
+      const chainObj = JSONResult.find((chain: any) => chain.chainId == CHAIN_ID);
+
+      const RPCURL = chainObj.rpc.find((str: string) => !str.includes('$'));
+
+      setFields((prev) => {
+        return {
+          ...prev,
+          ETH_RPC_URL: RPCURL
+        }
+      })
+
+    };
+    getURLs();
+  });
 
   const [fields, setFields] = useState({
     CHAIN_NAME: "My OPStack Chain",
