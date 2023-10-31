@@ -8,6 +8,7 @@ import { Provider as JotaiProvider } from 'jotai';
 
 import { App } from "./App";
 import { chains, config } from "./wagmi";
+import { goerli } from 'wagmi/chains';
 import "./index.css"
 
 /**
@@ -24,6 +25,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
       <WagmiConfig config={config}>
         <RainbowKitProvider
           chains={chains}
+          initialChain={goerli}
           theme={lightTheme({
             accentColor: "#202327",
             accentColorForeground: "white",

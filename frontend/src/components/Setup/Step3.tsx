@@ -8,11 +8,13 @@ function Step3({ addressFromStorage, fields }: any) {
             <h1 className="font-bold text-2xl my-5 mb-4 font-sans text-[#101521CC]">
                 Finishing Up
             </h1>
-            <div className="flex items-center justify-center">
+            <div className="flex items-center justify-center gap-1">
                 {/* https://github.com/Blocktheory/opstack-deployer */}
                 <a href="https://cloud.digitalocean.com/apps/new?repo=https://github.com/Blocktheory/opstack-deployer/tree/feat-deploy-ui">
                     <img src="https://www.deploytodo.com/do-btn-blue.svg" alt="Deploy to DO" />
                 </a>
+
+                <img src="https://aka.ms/deploytoazurebutton" />
             </div>
             <hr className="mt-10"></hr>
 

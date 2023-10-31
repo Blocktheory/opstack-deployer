@@ -37,30 +37,32 @@ function FooterButtons({
                             <button
                                 disabled={!fieldsStatus}
                                 onClick={onBack}
-                                className={` rounded-full border bg-white text-black font-semibold py-2 px-4 `}
+                                className={` rounded-full border bg-white text-black font-semibold py-2 px-4 cursor-pointer`}
                             >
                                 &larr; Back
                             </button>
                         )}
                         {/* {currStep == 2 || (currStep == 1 && !createFlag) ? null : ( */}
-                        <button
-                            onClick={handleNext}
-                            className={`ml-2 rounded-full border bg-black text-white font-semibold py-2 px-4  ${!fieldsStatus
-                                ? "bg-gray-200 pointer-events-none"
-                                : "hover:bg-white hover:text-black"
-                                } disabled:bg-slate-300 disabled:cursor-not-allowed disabled:text-white`}
-                            disabled={
-                                currStep == 2 || (currStep == 1 && !createFlag)
-                            }
-                        >
-                            Next &rarr;
-                        </button>
+
                         {/* )} */}
-                        {currStep == 2 && (
+                        {currStep == 2 ? (
                             <button className="ml-2 rounded-full border bg-black hover:bg-white text-white hover:text-black font-semibold py-2 px-4 ">
                                 Finish
                             </button>
-                        )}
+                        ) :
+                            <button
+                                onClick={handleNext}
+                                className={`ml-2 rounded-full border bg-black text-white font-semibold py-2 px-4 cursor-pointer  ${!fieldsStatus
+                                    ? "bg-gray-200 pointer-events-none"
+                                    : "hover:bg-white hover:text-black "
+                                    } disabled:bg-slate-300 disabled:cursor-not-allowed disabled:text-white`}
+                                disabled={
+                                    currStep == 2 || (currStep == 1 && !createFlag)
+                                }
+                            >
+                                Next &rarr;
+                            </button>
+                        }
                     </div>
                 </span>
             </div>
