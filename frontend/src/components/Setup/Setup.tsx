@@ -26,7 +26,7 @@ function Setup() {
   const [fields, setFields] = useState({
     CHAIN_NAME: "My OPStack Chain",
     CHAIN_ID: Math.floor(Math.random() * 90000) + 10000,
-    ETH_RPC_URL: "https://rpc.ankr.com/eth_goerli",
+    ETH_RPC_URL: "https://rpc2.sepolia.org",
   });
   const fieldsStatus =
     fields.CHAIN_NAME && fields.CHAIN_ID && fields.ETH_RPC_URL;
